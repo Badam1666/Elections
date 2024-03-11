@@ -1,18 +1,20 @@
 # Import Streamlit library
 import streamlit as st
+import pandas as pd
+import numpy as np
 
 # Title for the Streamlit app
-st.title("Interactive Map Example")
+st.title("Interactive Chart Example")
 
-# Sample data (latitude, longitude, marker label)
-data = [
-    (37.7749, -122.4194, "Marker 1"),
-    (34.0522, -118.2437, "Marker 2"),
-    (40.7128, -74.0060, "Marker 3"),
-]
+# Sample data for the chart
+data = pd.DataFrame({
+    'Category': ['A', 'B', 'C', 'D'],
+    'Value': [30, 40, 20, 10]
+})
 
-# Display the map with markers
-st.map(data)
+# Display a bar chart
+st.bar_chart(data.set_index('Category'))
 
 # Additional text or content
-st.write("This is a simple example of an interactive map in Streamlit.")
+st.write("This is a simple example of an interactive chart in Streamlit.")
+
