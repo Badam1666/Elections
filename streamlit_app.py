@@ -1,29 +1,69 @@
 import streamlit as st
-from streamlit_folium import folium_static
-import geemap.eefolium as geemap
-import ee
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import plotly.express as px
 
-# os.environ["EARTHENGINE_TOKEN"] == st.secrets["EARTHENGINE_TOKEN"]
+# Chargement des données
+url = "https://raw.githubusercontent.com/Badam1666/Elections/main/Elections_Departements_Final.csv"
+df = pd.read_csv(url)
 
-"# streamlit geemap demo"
-st.markdown('Source code: <https://github.com/Badam1666/Elections/blob/main/streamlit_app.py>')
+# Chargement de la carte de la France
+gdf = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
 
-with st.echo():
-    import streamlit as st
-    from streamlit_folium import folium_static
-    import geemap.eefolium as geemap
-    import ee
+# Filtrer la carte de la France pour ne conserver que les départements français
+gdf = gdf[gdf['name'].isin(df['nom_departement'].unique())]
 
-    m = geemap.Map()
-    dem = ee.Image('USGS/SRTMGL1_003')
+# Fusionner les données des élections avec la carte de la France
+merged_data = pd.merge(gdf, df, left_on='name', right_on='nom_departement', how='right')
 
-    vis_params = {
-    'min': 0,
-    'max': 4000,
-    'palette': ['006633', 'E5FFCC', '662A00', 'D8D8D8', 'F5F5F5']}
+# Fonction pour obtenir le parti avec le plus grand nombre de voix
+def winning_party(row):
+    parties = ['extreme_gauche', 'gauche', 'centre_gauche', 'centre', 'centre_droite', 'droite', 'extreme_droite', 'divers']
+    max_party = max(parties, key=lambda party: row[party])
+    return max_party
 
-    m.addLayer(dem, vis_params, 'SRTM DEM', True, 1)
-    m.addLayerControl()
+# Appliquer la fonction pour créer une nouvelle colonne 'winning_party'
+merged_data['winning_party'] = merged_data.apply(winning_party, axis=1)
 
-    # call to render Folium map in Streamlit
-    folium_static(m)
+# Filtrer les années uniques
+years = df['annee'].unique()
+selected_year = st.selectbox("Sélectionner une année", years)
+
+# Filtrer les données par année
+filtered_data = merged_data[merged_data['annee'] == selected_year]
+
+# Créer une carte interactive avec Plotly Express
+fig = px.choropleth_mapbox(filtered_data, 
+                           geojson=filtered_data.geometry, 
+                           locations=filtered_data.index, 
+                           color='winning_party',
+                           hover_data=['nom_departement', 'exprimes', 'abstentions'],
+                           mapbox_style="carto-positron",
+                           center={"lat": 46.603354, "lon": 1.888334},
+                           zoom=4,
+                           opacity=0.8,
+                           title=f"Résultats des élections européennes {selected_year}")
+
+# Afficher la carte
+st.plotly_chart(fig)
+
+# Créer un graphique interactif avec Plotly Express pour l'évolution par parti
+fig_evolution = px.line(df, x='annee', y=['extreme_gauche', 'gauche', 'centre_gauche', 'centre', 'centre_droite', 'droite', 'extreme_droite', 'divers'], 
+                        title="Évolution des votes par parti",
+                        labels={'value': 'Pourcentage de votes', 'annee': 'Année', 'variable': 'Parti'})
+
+# Afficher le graphique d'évolution
+st.plotly_chart(fig_evolution)
+
+# Afficher les taux d'abstention par département
+st.write("Taux d'abstention par département :")
+st.dataframe(filtered_data[['nom_departement', 'abstentions']])
+
+# Informations supplémentaires sur le tooltip
+st.write("Pourcentage de voix par parti par département (avec un carré de couleur pour chaque parti) :")
+st.dataframe(filtered_data[['nom_departement', 'exprimes', 'extreme_gauche', 'gauche', 'centre_gauche', 'centre', 'centre_droite', 'droite', 'extreme_droite', 'divers']])
+
+# Informations sur la population et le revenu médian
+st.write("Informations sur la population et le revenu médian :")
+st.dataframe(filtered_data[['nom_departement', 'total_pop', 'revenu_median']])
