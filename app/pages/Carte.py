@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import geopandas as gpd
@@ -42,14 +41,7 @@ gdf = gdf.rename(columns={'nom_departement': 'Département',
                           'divers': 'Divers'})
 
 # Define parties
-parties = [ 'Extrême droite',
-                          'Droite',
-                           'Centre droite',
-                          'Centre',
-                           'Centre gauche',
-                           'Gauche',
-                           'Extrême gauche',
-                           'Divers']
+parties = ['Extrême droite', 'Droite', 'Centre droite', 'Centre', 'Centre gauche', 'Gauche', 'Extrême gauche', 'Divers']
 
 # Sort parties within each department based on the votes, ensuring the most voted party comes first
 gdf['Tête'] = gdf[parties].idxmax(axis=1)
@@ -58,8 +50,6 @@ gdf['Tête'] = gdf[parties].idxmax(axis=1)
 for party in parties:
     gdf[f'{party} (%)'] = (gdf[party] / gdf['exprimes']) * 100
     gdf[f'{party} (%)'] = gdf[f'{party} (%)'].round(2)
-
-
 
 # Define tooltip fields for each department
 tooltip_fields = ['Département', 'Tête']
@@ -95,7 +85,7 @@ folium.LayerControl().add_to(m)
 # Create legend
 legend_img = Image.new('RGB', (100, 155), 'white')
 draw = ImageDraw.Draw(legend_img)
-font = ImageFont.truetype("arial.ttf", 10)
+font = ImageFont.load_default()  # Use default font
 
 # Define legend colors and labels
 colors = ['#242F7F', '#0066CC', '#82A2C6', '#FFD700', '#F3D79A', '#FF8080', '#BB0000', '#EEEEEE']
@@ -107,8 +97,6 @@ for i, (color, label) in enumerate(zip(colors, labels)):
     draw.rectangle([0, y, 10, y + 10], fill=color)
     draw.text((15, y), label, font=font, fill='black')
 
-
-
 # Display the map and legend
 col1, col2 = st.columns([4, 1])
 with col1:
@@ -117,6 +105,5 @@ with col1:
 with col2:
     st.image(legend_img, caption="Legend", use_column_width=True)
 
-   
 
-   
+             
