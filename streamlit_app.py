@@ -1,12 +1,14 @@
 import streamlit as st
 import pandas as pd
+import geopandas as gpd
 
 github_pickle_url = 'https://github.com/Badam1666/Elections/raw/main/elections_geo_dpt.pkl'
 
-# Load DataFrame from the pickle file
+# Load DataFrame from the pickle file using Pandas
 df = pd.read_pickle(github_pickle_url)
 
-df.info()
+# Convert DataFrame to GeoDataFrame using Geopandas
+gdf = gpd.GeoDataFrame(df, geometry='geometry')
 
-# Display the DataFrame in Streamlit
-st.dataframe(df)
+# Display the GeoDataFrame in Streamlit
+st.write(gdf)
