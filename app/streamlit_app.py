@@ -8,7 +8,7 @@ from streamlit_folium import folium_static
 import geemap.foliumap as geemap
 
 # Replace the URL with the correct raw content URL for your pickle file on GitHub
-github_pickle_url = 'https://github.com/Badam1666/Elections/raw/main/elections_geo_dpt.pkl'
+github_pickle_url = 'https://github.com/Badam1666/Elections/blob/main/raw_data/elections_geo_dpt.pkl'
 
 # Load DataFrame from the pickle file using Pandas
 df = pd.read_pickle(github_pickle_url)
