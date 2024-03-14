@@ -31,17 +31,17 @@ m = folium.Map(location=[46.603354, 1.888334], zoom_start=6)
 
 # Rename columns
 gdf = gdf.rename(columns={'nom_departement': 'Département', 
-                          'extreme_droite': 'Extrême droite',
+                          'extreme_droite': 'Extreme droite',
                           'droite': 'Droite',
                           'centre_droite': 'Centre droite',
                           'centre': 'Centre',
                           'centre_gauche': 'Centre gauche',
                           'gauche': 'Gauche',
-                          'extreme_gauche': 'Extrême gauche',
+                          'extreme_gauche': 'Extreme gauche',
                           'divers': 'Divers'})
 
 # Define parties
-parties = ['Extrême droite', 'Droite', 'Centre droite', 'Centre', 'Centre gauche', 'Gauche', 'Extrême gauche', 'Divers']
+parties = ['Extreme droite', 'Droite', 'Centre droite', 'Centre', 'Centre gauche', 'Gauche', 'Extreme gauche', 'Divers']
 
 # Sort parties within each department based on the votes, ensuring the most voted party comes first
 gdf['Tête'] = gdf[parties].idxmax(axis=1)
@@ -61,13 +61,13 @@ choropleth = folium.GeoJson(
     name='Choropleth',
     style_function=lambda feature: {
         'fillColor': '#EEEEEE' if feature['properties']['Tête'] == 'Divers' else
-                     '#242F7F' if feature['properties']['Tête'] == 'Extrême droite' else
+                     '#242F7F' if feature['properties']['Tête'] == 'Extreme droite' else
                      '#0066CC' if feature['properties']['Tête'] == 'Droite' else
                      '#82A2C6' if feature['properties']['Tête'] == 'Centre droite' else
                      '#FFD700' if feature['properties']['Tête'] == 'Centre' else
                      '#F3D79A' if feature['properties']['Tête'] == 'Centre gauche' else
                      '#FF8080' if feature['properties']['Tête'] == 'Gauche' else
-                     '#BB0000' if feature['properties']['Tête'] == 'Extrême gauche' else 'white',
+                     '#BB0000' if feature['properties']['Tête'] == 'Extreme gauche' else 'white',
         'color': 'black',
         'weight': 1,
         'fillOpacity': 0.7
@@ -89,7 +89,7 @@ font = ImageFont.load_default()  # Use default font
 
 # Define legend colors and labels
 colors = ['#242F7F', '#0066CC', '#82A2C6', '#FFD700', '#F3D79A', '#FF8080', '#BB0000', '#EEEEEE']
-labels = ['Extrême droite', 'Droite', 'Centre droite', 'Centre', 'Centre gauche', 'Gauche', 'Extrême gauche', 'Divers']
+labels = ['Extreme droite', 'Droite', 'Centre droite', 'Centre', 'Centre gauche', 'Gauche', 'Extreme gauche', 'Divers']
 
 # Draw legend
 for i, (color, label) in enumerate(zip(colors, labels)):
