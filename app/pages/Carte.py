@@ -7,6 +7,8 @@ import folium
 from folium.plugins import MarkerCluster
 from streamlit_folium import folium_static
 import geemap.foliumap as geemap
+from PIL import Image, ImageDraw, ImageFont
+import io
 
 # Replace the URL with the correct raw content URL for your pickle file on GitHub
 github_pickle_url = 'https://github.com/Badam1666/Elections/raw/main/raw_data/elections_geo_dpt.pkl'
@@ -23,7 +25,7 @@ selected_year = st.sidebar.selectbox("Select Year", ["2004", "2009", "2014", "20
 gdf = gdf[gdf['annee'] == int(selected_year)]
 
 # Set page title
-st.title("Map of French Departments with Votes for Each Party")
+st.title("Résultats des élections européennes en France")
 
 # Create a Map centered around France
 m = geemap.Map(center=[46.603354, 1.888334], zoom=6)
@@ -32,25 +34,41 @@ m = geemap.Map(center=[46.603354, 1.888334], zoom=6)
 parties = ['extreme_gauche', 'gauche', 'centre_gauche', 'centre', 'centre_droite', 'droite', 'extreme_droite', 'divers']
 
 # Sort parties within each department based on the votes, ensuring the most voted party comes first
-gdf['winner'] = gdf[parties].idxmax(axis=1)
+gdf['Tête'] = gdf[parties].idxmax(axis=1)
 
-# Create tooltip fields for winner and results for each party
-tooltip_fields = ['nom_departement', 'winner']
-tooltip_fields.extend(parties)
+# Convert party votes to percentage
+for party in parties:
+    gdf[f'{party} (%)'] = (gdf[party] / gdf['exprimes']) * 100
+    gdf[f'{party} (%)'] = gdf[f'{party} (%)'].round(2)
+
+# Rename columns
+gdf = gdf.rename(columns={'nom_departement': 'Département', 
+                          'extreme_droite': 'Extrême droite',
+                          'droite': 'Droite',
+                          'centre_droite': 'Centre droite',
+                          'centre': 'Centre',
+                          'centre_gauche': 'Centre gauche',
+                          'gauche': 'Gauche',
+                          'extreme_gauche': 'Extrême gauche',
+                          'divers': 'Divers'})
+
+# Define tooltip fields for each department
+tooltip_fields = ['Département', 'Tête']
+tooltip_fields.extend([f'{party} (%)' for party in parties])
 
 # Add GeoDataFrame as choropleth layer to the map
 choropleth = folium.GeoJson(
     gdf,
     name='Choropleth',
     style_function=lambda feature: {
-        'fillColor': '#EEEEEE' if feature['properties']['winner'] == 'divers' else
-                     '#242F7F' if feature['properties']['winner'] == 'extreme_droite' else
-                     '#0066CC' if feature['properties']['winner'] == 'droite' else
-                     '#82A2C6' if feature['properties']['winner'] == 'centre_droite' else
-                     '#FFD700' if feature['properties']['winner'] == 'centre' else
-                     '#F3D79A' if feature['properties']['winner'] == 'centre_gauche' else
-                     '#FF8080' if feature['properties']['winner'] == 'gauche' else
-                     '#BB0000' if feature['properties']['winner'] == 'extreme_gauche' else 'white',
+        'fillColor': '#EEEEEE' if feature['properties']['Tête'] == 'divers' else
+                     '#242F7F' if feature['properties']['Tête'] == 'extreme_droite' else
+                     '#0066CC' if feature['properties']['Tête'] == 'droite' else
+                     '#82A2C6' if feature['properties']['Tête'] == 'centre_droite' else
+                     '#FFD700' if feature['properties']['Tête'] == 'centre' else
+                     '#F3D79A' if feature['properties']['Tête'] == 'centre_gauche' else
+                     '#FF8080' if feature['properties']['Tête'] == 'gauche' else
+                     '#BB0000' if feature['properties']['Tête'] == 'extreme_gauche' else 'white',
         'color': 'black',
         'weight': 1,
         'fillOpacity': 0.7
@@ -62,29 +80,26 @@ choropleth = folium.GeoJson(
                                            localize=True)
 ).add_to(m)
 
-# Create legend
-legend_html = '''
-     <div style="position: fixed; 
-                 bottom: 50px; left: 50px; width: 150px; height: 130px; 
-                 border:2px solid grey; z-index:9999; font-size:14px;
-                 background-color: rgba(255, 255, 255, 0.8);
-                ">
-     <p style="margin:10px">&nbsp; Legend</p>
-     <p style="margin:10px; color:#242F7F">&nbsp; Extrême droite</p>
-     <p style="margin:10px; color:#0066CC">&nbsp; Droite</p>
-     <p style="margin:10px; color:#82A2C6">&nbsp; Centre droite</p>
-     <p style="margin:10px; color:#FFD700">&nbsp; Centre</p>
-     <p style="margin:10px; color:#F3D79A">&nbsp; Centre gauche</p>
-     <p style="margin:10px; color:#FF8080">&nbsp; Gauche</p>
-     <p style="margin:10px; color:#BB0000">&nbsp; Extrême gauche</p>
-     <p style="margin:10px; color:#EEEEEE">&nbsp; Divers</p>
-      </div>
-     '''
-
-m.get_root().html.add_child(folium.Element(legend_html))
-
 # Add layer control
 folium.LayerControl().add_to(m)
 
 # Display the map
 folium_static(m)
+
+# Create legend
+legend_img = Image.new('RGB', (100, 300), 'white')
+draw = ImageDraw.Draw(legend_img)
+font = ImageFont.truetype("arial.ttf", 12)
+
+# Define legend colors and labels
+colors = ['#242F7F', '#0066CC', '#82A2C6', '#FFD700', '#F3D79A', '#FF8080', '#BB0000', '#EEEEEE']
+labels = ['Extrême droite', 'Droite', 'Centre droite', 'Centre', 'Centre gauche', 'Gauche', 'Extrême gauche', 'Divers']
+
+# Draw legend
+for i, (color, label) in enumerate(zip(colors, labels)):
+    y = i * 30
+    draw.rectangle([0, y, 20, y + 20], fill=color)
+    draw.text((30, y), label, font=font, fill='black')
+
+# Display the legend
+st.sidebar.image(legend_img, caption="Legend", use_column_width=True)
