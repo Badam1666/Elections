@@ -1,11 +1,12 @@
 import streamlit as st
 import pandas as pd
 
-# Replace this URL with the correct raw content URL for your Excel file on GitHub
-github_excel_url = 'https://github.com/Badam1666/Elections/raw/main/elections_geo_dpt.xlsx'
+github_pickle_url = 'https://github.com/Badam1666/Elections/raw/main/elections_geo_dpt.pkl'
 
-# Read Excel file into a DataFrame
-df = pd.read_excel(github_excel_url)
+# Load DataFrame from the pickle file
+df = pd.read_pickle(github_pickle_url)
+
+df.info()
 
 # Display the DataFrame in Streamlit
 st.dataframe(df)
