@@ -4,3 +4,4 @@ geopandas
 matplotlib
 folium
 geemap
+streamlit_folium
