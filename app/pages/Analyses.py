@@ -1,7 +1,7 @@
 import streamlit as st
 
 def main():
-    st.title("Rickroll without Ads 🎵")
+    st.title("LOL")
 
     # YouTube video ID for the Rickroll video
     video_id = "dQw4w9WgXcQ"
