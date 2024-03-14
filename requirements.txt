@@ -6,4 +6,3 @@ folium
 geemap
 streamlit_folium
 Pillow
-PIL
