@@ -1,9 +1,3 @@
-name: elections
-channels:
-  - conda-forge
-dependencies:
-
-
 name: geo-env
 channels:
     - conda-forge
