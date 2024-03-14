@@ -5,3 +5,4 @@ matplotlib
 folium
 geemap
 streamlit_folium
+Pillow
