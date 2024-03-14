@@ -7,3 +7,4 @@ geemap
 streamlit_folium
 Pillow
 PIL
+streamlit.components.v1
