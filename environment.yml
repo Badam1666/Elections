@@ -7,6 +7,5 @@ dependencies:
   - pandas
   - geopandas
   - matplotlib
-  - folium
-  - geemap
+  - geemap>=0.20.0
 
