@@ -1,5 +1,4 @@
 import streamlit as st
-from streamlit.components.v1 import components_v1
 
 def main():
     st.title("Rickroll without Ads 🎵")
@@ -16,8 +15,7 @@ def main():
     """
 
     # Displaying the embedded video
-    components_v1.html(html_code, width=700, height=400)
+    st.components.v1.html(html_code, width=700, height=400)
 
 if __name__ == "__main__":
     main()
-
