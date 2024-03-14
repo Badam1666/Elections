@@ -118,3 +118,5 @@ with col2:
     st.image(legend_img, caption="Legend", use_column_width=True)
 
    
+
+   
