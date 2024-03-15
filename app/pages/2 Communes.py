@@ -31,7 +31,8 @@ if not filtered_data.empty:
     grouped_data = filtered_data.groupby(['libelle_commune', 'annee']).sum().reset_index()
     
     # Create a DataFrame to store the results
-    df = grouped_data.pivot(index='libelle_commune', columns='annee', values=['extreme_gauche', 'gauche', 'centre_gauche', 'centre', 'centre_droite', 'droite', 'extreme_droite', 'divers']).fillna(0)
+    df = pd.DataFrame(grouped_data)
+    df = df.pivot(index='libelle_commune', columns='annee', values=['extreme_gauche', 'gauche', 'centre_gauche', 'centre', 'centre_droite', 'droite', 'extreme_droite', 'divers']).fillna(0)
     df.columns = ['_'.join(map(str, col)).strip() for col in df.columns.values]
     df.reset_index(inplace=True)
     
