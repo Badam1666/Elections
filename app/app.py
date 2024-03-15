@@ -8,10 +8,10 @@ add_page_title()
 # and icons should be
 show_pages(
     [
-        Page(pages.home, "Accueil", "🏠"),
-        Page(pages.page_2, "Orientations politiques", "📊"),
-        Page(pages.page_3, "Carte", "🗺️"),
-        Page(pages.page_4, "Commune", "🏘️"),
+        Page(pages/home, "Accueil", "🏠"),
+        Page(pages/page_2, "Orientations politiques", "📊"),
+        Page(pages/page_3, "Carte", "🗺️"),
+        Page(pages/page_4, "Commune", "🏘️"),
     ]
 )
 
