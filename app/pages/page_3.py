@@ -1,6 +1,11 @@
 import streamlit as st
 st.set_page_config(page_title="Elections européennes", page_icon="🗳️", layout="centered", initial_sidebar_state="auto", menu_items=None)
 
+def show_page_3():
+    st.title("Carte")
+    st.write("Contenu de la page 3")
+    # Add more content or Streamlit components as needed for page 3
+
 import streamlit as st
 from datetime import datetime, timedelta
 
