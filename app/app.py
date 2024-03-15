@@ -34,10 +34,7 @@ def main():
                         "<a style='color: white; text-decoration: none;' href='https://www.service-public.fr/particuliers/vosdroits/demarches-et-outils/ISE'>Vérifiez votre statut électoral !</a>"
                         "</div>", unsafe_allow_html=True)
 
-    # Countdown jusqu'au 1er Mai à minuit
-    target_datetime = datetime(datetime.now().year, 5, 1, 0, 0)
-    count_down(target_datetime)
-
+ 
     # Description du site
     st.header("À propos de Nostradamus")
     st.write("Nostradamus est votre source de prévisions électorales, vous aidant à comprendre les tendances "
@@ -49,6 +46,11 @@ def main():
     st.write("Nos experts prévoient une participation record pour les prochaines élections européennes. "
              "Nous prévoyons également des changements significatifs dans la composition du Parlement européen, avec "
              "des implications majeures pour l'avenir de l'Union européenne.")
+
+   # Countdown jusqu'au 1er Mai à minuit
+    target_datetime = datetime(datetime.now().year, 5, 1, 0, 0)
+    count_down(target_datetime)
+
 
 if __name__ == '__main__':
     main()
