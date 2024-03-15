@@ -31,9 +31,8 @@ def main():
     # Sur ce site
     st.subheader("Sur ce site")
     st.write("Bienvenue sur le site de Nostradamus, votre source d'informations essentielles sur les élections européennes. Sur notre plateforme, vous trouverez :")
-    st.write("1. **Orientations Politiques** : Découvrez comment nous classons les partis politiques en différentes orientations politiques, vous permettant de mieux comprendre les différentes idéologies et positions sur les questions européennes.")
-    st.write("2. **Carte des Résultats** : Explorez une carte interactive des résultats des élections européennes par département afin de visualiser les tendances politiques à travers la France depuis 2004.")
-    st.write("3. **Résultats par Commune** : Consultez les résultats des élections européennes de 2014 et 2019 dans votre commune, vous donnant un aperçu détaillé de la participation et des votes pour chaque parti politique.")
+    st.write("1. **Carte des Résultats** : Explorez une carte interactive des résultats des élections européennes par département afin de visualiser les tendances politiques à travers la France depuis 2004.")
+    st.write("2. **Résultats par Commune** : Consultez les résultats des élections européennes de 2014 et 2019 dans votre commune, vous donnant un aperçu détaillé de la participation et des votes pour chaque parti politique.")
     st.write("Notre objectif est de rendre les élections européennes accessibles à tous, afin que chacun puisse prendre des décisions éclairées et participer pleinement à la démocratie européenne.")
 
     # Nos prédictions
