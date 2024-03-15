@@ -12,7 +12,6 @@ data = load_data()
 
 # Streamlit app
 st.title('Résultat d\'élections dans votre commune')
-st.subheader('Cherchez votre commune dans la barre à gauche pour afficher les résultats de 2014 et 2019 ')
 
 # Multiselect widget for commune selection
 options = data['libelle_commune'].str.lower().unique()
@@ -63,4 +62,4 @@ if not filtered_data.empty:
     st.write(grouped_data)
 
 else:
-    st.write('No data available for the selected commune(s).')
+    st.subheader('Cherchez votre commune dans la barre à gauche pour afficher les résultats de 2014 et 2019 ')
