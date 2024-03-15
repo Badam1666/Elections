@@ -35,7 +35,7 @@ if not filtered_data.empty:
         # Plot heatmap
         plt.figure(figsize=(10, 6))
         st.write(f'**Year: {year}**')
-        sns.heatmap(year_data, annot=True, fmt="d", cmap="YlGnBu", linewidths=0.5)
+        sns.heatmap(year_data, annot=True, fmt=".1f", cmap="YlGnBu", linewidths=0.5)
         plt.xlabel('Election Data')
         plt.ylabel('Commune')
         st.pyplot()
