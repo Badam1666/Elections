@@ -6,28 +6,6 @@ st.set_page_config(page_title="Elections européennes", page_icon="🗳️", lay
 # Import necessary Streamlit module(s)
 import streamlit as st
 
-# Define your page functions
-def accueil_page():
-    st.write("Welcome to the Accueil page.")
-
-def orientations_politiques_page():
-    st.write("Welcome to the Orientations Politiques page.")
-
-def carte_page():
-    st.write("Welcome to the Carte page.")
-
-def commune_page():
-    st.write("Welcome to the Commune page.")
-
-def prediction_page():
-    st.write("Welcome to the Prédiction page.")
-
-show_pages(
-    [
-        Page("Accueil.py", "Home", "🏠"),
-        Page("page_2.py", "Page 2", ":books:"),
-    ]
-)
 
 # Define the page dictionary
 pages_dict = {
