@@ -12,6 +12,7 @@ data = load_data()
 
 # Streamlit app
 st.title('Résultat d\'élections dans votre commune')
+st.subheader('Cherchez votre commune dans la barre à gauche pour afficher les résultats de 2014 et 2019 ')
 
 # Multiselect widget for commune selection
 options = data['libelle_commune'].str.lower().unique()
