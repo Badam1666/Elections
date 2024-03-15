@@ -26,9 +26,13 @@ def main():
     st.subheader("Les élections européennes à votre portée")
 
     # Explication des élections européennes
-    st.write("Les élections européennes sont un moment crucial où vous pouvez exercer votre droit de vote \
-et influencer l'avenir de l'Union européenne. C'est votre opportunité de faire entendre votre voix \
-et de participer à la démocratie européenne.")
+    st.markdown("<div style='background-color: #FFFF00; padding: 10px; border-radius: 5px;'>"
+                "<div style='color: black;'>"
+                "Les élections européennes sont un moment crucial où vous pouvez exercer votre droit de vote "
+                "et influencer l'avenir de l'Union européenne. C'est votre opportunité de faire entendre votre voix "
+                "et de participer à la démocratie européenne."
+                "</div>"
+                "</div>", unsafe_allow_html=True)
 
     # Box bleue avec lien pour vérifier le statut électoral
     st.sidebar.markdown("<div style='background-color: #87CEEB; padding: 10px; border-radius: 5px;'>"
@@ -40,16 +44,24 @@ et de participer à la démocratie européenne.")
     count_down(target_datetime)
 
     # Description du site
-    st.header("À propos de Nostradamus")
-    st.write("""Nostradamus est votre source de prévisions électorales, vous aidant à comprendre les tendances
-et les enjeux des élections européennes. Nous mettons à votre disposition des analyses approfondies, des
-données en temps réel et des outils interactifs pour vous permettre de prendre des décisions éclairées.""")
+    st.markdown("<div style='background-color: #FFFF00; padding: 10px; border-radius: 5px;'>"
+                "<div style='color: black;'>"
+                "<h2>À propos de Nostradamus</h2>"
+                "Nostradamus est votre source de prévisions électorales, vous aidant à comprendre les tendances "
+                "et les enjeux des élections européennes. Nous mettons à votre disposition des analyses approfondies, des "
+                "données en temps réel et des outils interactifs pour vous permettre de prendre des décisions éclairées."
+                "</div>"
+                "</div>", unsafe_allow_html=True)
 
     # Nos prévisions
-    st.header("Nos Prévisions")
-    st.write("Nos experts prévoient une participation record pour les prochaines élections européennes. \
-Nous prévoyons également des changements significatifs dans la composition du Parlement européen, avec \
-des implications majeures pour l'avenir de l'Union européenne.")
+    st.markdown("<div style='background-color: #FFFF00; padding: 10px; border-radius: 5px;'>"
+                "<div style='color: black;'>"
+                "<h2>Nos Prévisions</h2>"
+                "Nos experts prévoient une participation record pour les prochaines élections européennes. "
+                "Nous prévoyons également des changements significatifs dans la composition du Parlement européen, avec "
+                "des implications majeures pour l'avenir de l'Union européenne."
+                "</div>"
+                "</div>", unsafe_allow_html=True)
 
 if __name__ == '__main__':
     main()
