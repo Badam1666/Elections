@@ -1,7 +1,5 @@
 import streamlit as st
 import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
 
 # Load data
 @st.cache
@@ -14,37 +12,27 @@ data = load_data()
 
 # Streamlit app
 st.title('Election Data Explorer')
-st.subheader('Recherchez votre commune dans la barre de gauche pour afficher les résultats des années 2014 et 2019')
 
 # Multiselect widget for commune selection
-options = data['libelle_commune'].unique()
-selected_communes = st.sidebar.multiselect('Sélectionnez votre commune(s):', options)
+options = data['libelle_commune'].str.lower().unique()
+selected_communes = st.sidebar.multiselect('Select Commune(s):', options)
 
 # Filter data based on selected communes
-filtered_data = data[data['libelle_commune'].isin(selected_communes)]
+filtered_data = data[data['libelle_commune'].str.lower().isin(selected_communes)]
 
 if not filtered_data.empty:
     # Display filtered data
-    st.subheader('Données électorales pour les communes sélectionnées')
-
-    # Group by commune and year to get party percentages
-    grouped_data = filtered_data.groupby(['libelle_commune', 'annee']).sum().reset_index()
+    st.subheader('Election Data for Selected Commune(s)')
 
     # Pivot the data to have years as columns and cities as rows
-    pivoted_data = grouped_data.pivot(index='libelle_commune', columns='annee', values=['extreme_gauche', 'gauche', 'centre_gauche', 'centre', 'centre_droite', 'droite', 'extreme_droite', 'divers']).fillna(0)
-    pivoted_data.columns = ['_'.join(map(str, col)).strip() for col in pivoted_data.columns.values]
+    pivoted_data = filtered_data.pivot_table(index='libelle_commune', columns='annee', aggfunc='sum').fillna(0)
     
-    # Add party percentage columns for each year
-    for party in ['extreme_gauche', 'gauche', 'centre_gauche', 'centre', 'centre_droite', 'droite', 'extreme_droite', 'divers']:
-        pivoted_data[f'{party}_percentage_2014'] = (pivoted_data[f'{party}_2014'] / pivoted_data['total_votes_2014']) * 100
-        pivoted_data[f'{party}_percentage_2019'] = (pivoted_data[f'{party}_2019'] / pivoted_data['total_votes_2019']) * 100
-
-    # Determine the winner party for each commune
-    pivoted_data['Winner'] = pivoted_data[['extreme_gauche_percentage_2019', 'gauche_percentage_2019', 'centre_gauche_percentage_2019', 'centre_percentage_2019', 'centre_droite_percentage_2019', 'droite_percentage_2019', 'extreme_droite_percentage_2019', 'divers_percentage_2019']].idxmax(axis=1)
+    # Convert the pivot table to a DataFrame
+    df = pivoted_data.reset_index()
+    df.columns.name = None  # Remove the name of the columns index
     
-    # Display results as a table
-    st.write('Résultats des élections par commune:')
-    st.write(pivoted_data)
+    # Display the DataFrame
+    st.write(df)
 
 else:
-    st.write('Aucune donnée disponible pour la ou les communes sélectionnées.')
+    st.write('No data available for the selected commune(s).')
