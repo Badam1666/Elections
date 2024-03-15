@@ -33,12 +33,12 @@ if not filtered_data.empty:
         year_data.drop(columns=['annee'], inplace=True)
 
         # Plot heatmap
-        plt.figure(figsize=(10, 6))
+        fig, ax = plt.subplots(figsize=(10, 6))
         st.write(f'**Year: {year}**')
-        sns.heatmap(year_data, annot=True, fmt=".1f", cmap="YlGnBu", linewidths=0.5)
+        sns.heatmap(year_data, annot=True, fmt=".1f", cmap="YlGnBu", linewidths=0.5, ax=ax)
         plt.xlabel('Election Data')
         plt.ylabel('Commune')
-        st.pyplot()
+        st.pyplot(fig)
 
 else:
     st.write('No data available for the selected commune(s).')
