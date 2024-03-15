@@ -2,24 +2,6 @@ import streamlit as st
 import time
 from datetime import datetime, timedelta
 
-def count_down(target_datetime):
-    st.sidebar.title("Temps restant avant la fin des inscriptions en ligne")
-    with st.sidebar.markdown("<div style='background-color: #FFFF00; padding: 10px; border-radius: 5px;'>"
-                             "<div style='color: black;'>", unsafe_allow_html=True):
-        countdown_placeholder = st.empty()
-        while datetime.now() < target_datetime:
-            remaining_time = target_datetime - datetime.now()
-            days = remaining_time.days
-            hours, remainder = divmod(remaining_time.seconds, 3600)
-            minutes, seconds = divmod(remainder, 60)
-            
-            time_remaining = f"{days} jours, {hours} heures, {minutes} minutes, {seconds} secondes"
-            
-            countdown_placeholder.subheader(f"Temps restant : {time_remaining}")
-            time.sleep(1)
-        
-        st.sidebar.subheader("Fin des inscriptions en ligne")
-
 def main():
     st.title("Bienvenue sur le site de Nostradamus")
     st.subheader("Les élections européennes à votre portée")
@@ -47,6 +29,24 @@ def main():
              "Nous prévoyons également des changements significatifs dans la composition du Parlement européen, avec "
              "des implications majeures pour l'avenir de l'Union européenne.")
 
+def count_down(target_datetime):
+    st.sidebar.title("Temps restant avant la fin des inscriptions en ligne")
+    with st.sidebar.markdown("<div style='background-color: #FFFF00; padding: 10px; border-radius: 5px;'>"
+                             "<div style='color: black;'>", unsafe_allow_html=True):
+        countdown_placeholder = st.empty()
+        while datetime.now() < target_datetime:
+            remaining_time = target_datetime - datetime.now()
+            days = remaining_time.days
+            hours, remainder = divmod(remaining_time.seconds, 3600)
+            minutes, seconds = divmod(remainder, 60)
+            
+            time_remaining = f"{days} jours, {hours} heures, {minutes} minutes, {seconds} secondes"
+            
+            countdown_placeholder.subheader(f"Temps restant : {time_remaining}")
+            time.sleep(1)
+        
+        st.sidebar.subheader("Fin des inscriptions en ligne")
+                                 
  # Countdown jusqu'au 1er Mai à minuit
 target_datetime = datetime(datetime.now().year, 5, 1, 0, 0)
 remaining_time = target_datetime - datetime.now()
