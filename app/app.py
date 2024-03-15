@@ -29,10 +29,25 @@ def main():
              "Nous prévoyons également des changements significatifs dans la composition du Parlement européen, avec "
              "des implications majeures pour l'avenir de l'Union européenne.")
 
-import streamlit as st
-from datetime import datetime
 
 # Countdown jusqu'au 1er Mai à minuit
+target_datetime = datetime(datetime.now().year, 5, 1, 0, 0)
+
+countdown_placeholder = st.empty()
+
+while datetime.now() < target_datetime:
+    remaining_time = target_datetime - datetime.now()
+    days = remaining_time.days
+    hours, remainder = divmod(remaining_time.seconds, 3600)
+    minutes, seconds = divmod(remainder, 60)
+    time_remaining = f"{days} jours, {hours} heures, {minutes} minutes, {seconds} secondes"
+    
+    countdown_placeholder.markdown(f"<h3>Temps restant avant la fin des inscriptions en ligne : {time_remaining}</h3>", unsafe_allow_html=True)
+    
+    time.sleep(1)
+
+
+
 
 
 
