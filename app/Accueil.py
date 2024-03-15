@@ -35,9 +35,6 @@ def main():
     st.write("2. **Résultats par Commune** : Consultez les résultats des élections européennes de 2014 et 2019 dans votre commune, vous donnant un aperçu détaillé de la participation et des votes pour chaque parti politique.")
     st.write("Notre objectif est de rendre les élections européennes accessibles à tous, afin que chacun puisse prendre des décisions éclairées et participer pleinement à la démocratie européenne.")
 
-      # Répartition
-    st.subheader("Répartion par orientation politique")
-    st.write("Durant les 20 dernières annnées d'élections européennes, les noms des partis et nuances politiques ont changé considérablement. Pour pouvoir être cohérent dans nos analyses et dans nos prédictions, nous avons décidé de les classer par orientation politique. Nous avons utilisé le site internet de chacun de ces partis et les informations de l'Assemblée Nationale pour effectuer ce tri.")
     
     # Nos prédictions
     st.subheader("Nos prédictions")
@@ -109,8 +106,10 @@ def main():
             ax2.text(value, index, f'{value}%', va='center')
         st.pyplot(fig2)
 
-    # Display election results by year
-    st.subheader("Résultats des élections européennes par année")
+    
+      # Répartition
+    st.subheader("Répartion par orientation politique")
+    st.write("Durant les 20 dernières annnées d'élections européennes, les noms des partis et nuances politiques ont changé considérablement. Pour pouvoir être cohérent dans nos analyses et dans nos prédictions, nous avons décidé de les classer par orientation politique. Nous avons utilisé le site internet de chacun de ces partis et les informations de l'Assemblée Nationale pour effectuer ce tri.")
     election_results = {
         '2004': {
             'Extrême gauche': 'LPC, LXG',
@@ -165,7 +164,7 @@ def main():
     }
 
     for year, results in election_results.items():
-        st.subheader(f"Année {year}")
+        st.write(f"Année {year}")
         for orientation, parties in results.items():
             st.write(f"- {orientation} : {parties}")
 
