@@ -62,4 +62,4 @@ if not filtered_data.empty:
     st.write(grouped_data)
 
 else:
-    st.subheader('Cherchez votre commune dans la barre à gauche pour afficher les résultats de 2014 et 2019 ')
+    st.subheader('Cherchez votre commune dans la barre latérale pour afficher les résultats de 2014 et 2019 ')
