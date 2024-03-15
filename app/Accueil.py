@@ -18,3 +18,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+if st.button("Carte"):
+    st.switch_page("pages/page_2.py")
