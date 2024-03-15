@@ -40,6 +40,9 @@ if not filtered_data.empty:
                             'Blancs et nuls', 'Extreme gauche', 'Gauche', 'Centre gauche',
                             'Centre', 'Centre droite', 'Droite', 'Extreme droite']
     
+    # Replace the year values with "2014" and "2019"
+    grouped_data['Année'] = grouped_data['Année'].map({2014: '2014', 2019: '2019'})
+    
     # Set commune as index
     grouped_data.set_index('Commune', inplace=True)
     
