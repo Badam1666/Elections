@@ -3,10 +3,6 @@ st.set_page_config(page_title="Elections européennes", page_icon="🗳️", lay
 
 
 
-def show_page_3():
-    st.title("Carte")
-    st.write("Contenu de la page 3")
-    # Add more content or Streamlit components as needed for page 3
 
 import time
 from datetime import datetime, timezone, timedelta
