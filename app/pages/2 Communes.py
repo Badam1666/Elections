@@ -29,7 +29,8 @@ if not filtered_data.empty:
     
     # Identify the party that got the most votes for each commune
     max_votes_party = grouped_data[['extreme_gauche', 'gauche', 'centre_gauche', 'centre', 'centre_droite', 'droite', 'extreme_droite']].idxmax(axis=1)
-    grouped_data['Tête'] = max_votes_party.apply(lambda party: party if max_votes_party.value_counts().max() == 1 else 'Egalité')
+    grouped_data['Tête'] = max_votes_party
+
     
     # Rearrange and rename columns
     grouped_data = grouped_data[[
