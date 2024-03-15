@@ -1,8 +1,4 @@
 import streamlit as st
-st.set_page_config(page_title="Elections européennes", page_icon="🗳️", layout="centered", initial_sidebar_state="auto", menu_items=None)
-
-
-import streamlit as st
 import pandas as pd
 
 # Load data
@@ -14,18 +10,21 @@ def load_data():
 
 data = load_data()
 
-# Function to calculate percentage difference
-def calculate_percentage_diff(year1, year2):
-    return ((year2 - year1) / year1) * 100
-
 # Streamlit app
 st.title('Election Data Explorer')
 
 # Search bar for commune selection
 search_query = st.text_input('Search for a commune (code or name):').lower()
 
-# Filter data based on search query
-filtered_data = data[data['libelle_commune'].str.lower().str.contains(search_query)]
+# Filter options based on search query
+options = data['libelle_commune'].str.lower().unique()
+suggested_options = [option for option in options if search_query in option]
+
+# Multiselect widget for commune selection
+selected_communes = st.multiselect('Select Commune(s):', suggested_options)
+
+# Filter data based on selected communes
+filtered_data = data[data['libelle_commune'].str.lower().isin(selected_communes)]
 
 if not filtered_data.empty:
     # Display filtered data
@@ -44,7 +43,7 @@ if not filtered_data.empty:
     if len(years) == 2:
         year1_data = filtered_data[filtered_data['annee'] == years[0]].iloc[:, 2:]
         year2_data = filtered_data[filtered_data['annee'] == years[1]].iloc[:, 2:]
-        percentage_diff = calculate_percentage_diff(year1_data, year2_data)
+        percentage_diff = ((year2_data - year1_data) / year1_data) * 100
 
         st.subheader('Percentage Difference Between Years')
         st.write(percentage_diff)
@@ -52,4 +51,4 @@ if not filtered_data.empty:
         st.write('Please select a commune with data for both 2014 and 2019.')
 
 else:
-    st.write('No data available for the selected commune.')
+    st.write('No data available for the selected commune(s).')
