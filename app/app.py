@@ -5,19 +5,21 @@ from datetime import datetime, timedelta
 def count_down(target_datetime):
     with st.sidebar:
         st.title("Temps restant avant la fin des inscriptions en ligne")
-        countdown_placeholder = st.empty()
-        while datetime.now() < target_datetime:
-            remaining_time = target_datetime - datetime.now()
-            days = remaining_time.days
-            hours, remainder = divmod(remaining_time.seconds, 3600)
-            minutes, seconds = divmod(remainder, 60)
+        with st.markdown("<div style='background-color: #FFFF00; padding: 10px; border-radius: 5px;'>"
+                         "<div style='color: black;'>", unsafe_allow_html=True):
+            countdown_placeholder = st.empty()
+            while datetime.now() < target_datetime:
+                remaining_time = target_datetime - datetime.now()
+                days = remaining_time.days
+                hours, remainder = divmod(remaining_time.seconds, 3600)
+                minutes, seconds = divmod(remainder, 60)
+                
+                time_remaining = f"{days} jours, {hours} heures, {minutes} minutes, {seconds} secondes"
+                
+                countdown_placeholder.subheader(f"Temps restant : {time_remaining}")
+                time.sleep(1)
             
-            time_remaining = f"{days} jours, {hours} heures, {minutes} minutes, {seconds} secondes"
-            
-            countdown_placeholder.subheader(f"Temps restant : {time_remaining}")
-            time.sleep(1)
-        
-        st.subheader("Fin des inscriptions en ligne")
+            st.subheader("Fin des inscriptions en ligne")
 
 def main():
     st.title("Bienvenue sur le site de Nostradamus")
@@ -39,15 +41,4 @@ et de participer à la démocratie européenne.")
 
     # Description du site
     st.header("À propos de Nostradamus")
-    st.write("Nostradamus est votre source de prévisions électorales, vous aidant à comprendre les tendances \
-et les enjeux des élections européennes. Nous mettons à votre disposition des analyses approfondies, des \
-données en temps réel et des outils interactifs pour vous permettre de prendre des décisions éclairées.")
-
-    # Nos prévisions
-    st.header("Nos Prévisions")
-    st.write("Nos experts prévoient une participation record pour les prochaines élections européennes. \
-Nous prévoyons également des changements significatifs dans la composition du Parlement européen, avec \
-des implications majeures pour l'avenir de l'Union européenne.")
-
-if __name__ == '__main__':
-    main()
+    st.write("Nostradamus est votre source de prévisions électorales, vous aid
