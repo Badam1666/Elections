@@ -32,24 +32,23 @@ def main():
 import streamlit as st
 from datetime import datetime
 
-def main():
-    # Countdown jusqu'au 1er Mai à minuit
-    target_datetime = datetime(datetime.now().year, 5, 1, 0, 0)
-    remaining_time = target_datetime - datetime.now()
-    days = remaining_time.days
-    hours, remainder = divmod(remaining_time.seconds, 3600)
-    minutes, seconds = divmod(remainder, 60)
-    time_remaining = f"{days} jours, {hours} heures, {minutes} minutes, {seconds} secondes"
 
-    st.sidebar.markdown("<div style='background-color: #FFFF00; padding: 10px; border-radius: 5px;'>"
+# Countdown jusqu'au 1er Mai à minuit
+target_datetime = datetime(datetime.now().year, 5, 1, 0, 0)
+remaining_time = target_datetime - datetime.now()
+days = remaining_time.days
+hours, remainder = divmod(remaining_time.seconds, 3600)
+minutes, seconds = divmod(remainder, 60)
+time_remaining = f"{days} jours, {hours} heures, {minutes} minutes, {seconds} secondes"
+
+st.sidebar.markdown("<div style='background-color: #FFFF00; padding: 10px; border-radius: 5px;'>"
                         "<div style='color: black;'>"
                         "<h3>Temps restant avant la fin des inscriptions en ligne</h3>"
                         f"<p>{time_remaining}</p>"
                         "</div>"
                         "</div>", unsafe_allow_html=True)
 
-if __name__ == "__main__":
-    main()
+
 
 
 
