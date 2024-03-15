@@ -15,10 +15,6 @@ data = load_data()
 # Streamlit app
 st.title('Election Data Explorer')
 
-# Filter options based on search query
-options = data['libelle_commune'].str.lower().unique()
-suggested_options = [option for option in options if search_query in option]
-
 # Multiselect widget for commune selection
 selected_communes = st.sidebar.multiselect('Select Commune(s):', suggested_options)
 
