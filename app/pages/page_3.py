@@ -8,32 +8,31 @@ def show_page_3():
     st.write("Contenu de la page 3")
     # Add more content or Streamlit components as needed for page 3
 
+import streamlit as st
 import time
 from datetime import datetime, timezone, timedelta
 
-def count_down(ts):
+def count_down(target_datetime):
     with st.empty():
-        while ts:
-            current_time = datetime.now(timezone.utc) + timedelta(hours=1)  # UTC+1 time
-            if current_time >= datetime(2024, 5, 1, 0, 0, tzinfo=timezone.utc):
-                st.header("Fin des inscriptions en ligne")
-                break
+        while datetime.now(timezone.utc) < target_datetime:
+            remaining_time = target_datetime - datetime.now(timezone.utc)
+            days, seconds = divmod(remaining_time.total_seconds(), 86400)
+            hours, seconds = divmod(seconds, 3600)
+            minutes, seconds = divmod(seconds, 60)
             
-            mins, secs = divmod(ts, 60)
-            time_now = '{:02d}:{:02d}'.format(mins, secs)
-            st.header(f"{time_now}")
+            time_remaining = f"{int(days)} days, {int(hours)} hours, {int(minutes)} minutes, {int(seconds)} seconds"
+            
+            st.header(f"{time_remaining}")
             time.sleep(1)
-            ts -= 1
-        else:
-            st.header("Time Up!")
+        
+        st.header("Fin des inscriptions en ligne")
 
 def main():
-    st.title("Countdown Timer")
-    time_minutes = st.number_input('Enter the time in minutes ', min_value=1, value=25)
-    time_in_seconds = time_minutes * 60
+    st.title("Countdown to May 1st, 2024")
+    target_datetime = datetime(2024, 5, 1, 0, 0, tzinfo=timezone.utc)
     
     if st.button("START"):
-        count_down(int(time_in_seconds))
+        count_down(target_datetime)
 
 if __name__ == '__main__':
     main()
