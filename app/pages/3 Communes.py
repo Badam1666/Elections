@@ -51,7 +51,7 @@ if not filtered_data.empty:
             for year in [2014, 2019]:
                 year_data = commune_data[commune_data['annee'] == year]
                 if not year_data.empty:
-                    metric_data[year] = year_data[metric].values[0]
+                    metric_data[year] = year_data[metric].values[0] if metric in year_data else 0
                 else:
                     metric_data[year] = 0
             table_data[metric] = metric_data
