@@ -1,71 +1,25 @@
-import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+import streamlit as st
 
-# Load data
-url = "https://github.com/AliciaD31/elections-nostradamus/blob/main/predictions2024_Python.csv?raw=true"
-df = pd.read_csv(url)
-
-# Renomme les orientations politiques
-df['Orientation politique'] = df['Orientation politique'].replace({
-    'extreme_gauche': 'Extrême gauche',
-    'gauche': 'Gauche',
-    'centre_gauche': 'Centre gauche',
-    'centre': 'Centre',
-    'centre_droite': 'Centre droite',
-    'droite': 'Droite',
-    'extreme_droite': 'Extrême droite',
-    'divers': 'Divers'
-})
-
-# Define colors for each category
-colors = {
-    'Divers': '#EEEEEE',
-    'Extrême droite': '#242F7F',
-    'Droite': '#0066CC',
-    'Centre droite': '#82A2C6',
-    'Centre': '#ffcc00ff',
-    'Centre gauche': '#F3D79A',
-    'Gauche': '#FF8080',
-    'Extrême gauche': '#BB0000'
+# Create the original data dictionary
+data = {
+    'Année': [2004, 2009, 2014, 2019, 2024],
+    'Extrême gauche': ["LPC, LXG", "LEXG, LCOP", "LEXG, LFG", "La France Insoumise, L'Europe des gens", "La France Insoumise, Lutte ouvrière, NPA, PCF"],
+    'Gauche': ["LPS, LDG", "LSOC, LDVD", "LDVG, LUG", "Liste citoyenne",  "Parti socialiste et Place Publique"],
+    'Centre gauche': ["LEC, LVE", "LVEC", "LVEC", "Europe Ecologie, Envie d'Europe, Urgence Ecologie", "Europe Ecologie les Verts,Parti radical de Gauche "],
+    'Centre': ["-","LCMD", "LUC", "Renaissance", "Renaissance, Ecologie au centre"],
+    'Centre droite': ["LUDF", "-", "-", "Union Droite Centre, Les européens", "Alliance rurale"],
+    'Droite': ["LUMP, LCP, LDD", "LMAJ, LDVD", "LDVD, LUMP", "-", "Les republicains, Notre Europe"],
+    'Extrême droite': ["LFN, LXD", "LFN, LEXD", "LFN, LEXD", " Prenez le pouvoir, Debout ! La France, Ensemble pour le Frexit", "Debout ! La France, Reconquête, Rassemblement national, Union populaire republicaine"],
+    'Divers': ["LDV, LRG", " LAUT, LREG", "LDIV", "Parti animaliste", "Parti animaliste"]
 }
+# Create a DataFrame from the data
+df = pd.DataFrame(data)
+# Reshape the DataFrame
+reshaped_df = pd.melt(df, id_vars=['Année'], var_name='Orientation Politique', value_name='Partis')
+# Pivot the reshaped DataFrame
+pivoted_df = reshaped_df.pivot(index='Année', columns='Orientation Politique', values='Partis')
 
-# Sort dataframe by the percentages
-df_sorted_sondages = df.sort_values(by='Sondages_2024', ascending=True)
-df_sorted = df.sort_values(by='predictions_2024', ascending=True)
-
-# Create a Streamlit app
-st.title('Election Predictions')
-
-# Display the predictions and sondages plots side by side
-col1, col2 = st.columns(2)
-
-# Plot for predictions_2024
-with col1:
-    fig1, ax1 = plt.subplots(figsize=(8, 8))
-    ax1.barh(df_sorted['Orientation politique'], df_sorted['predictions_2024'], color=[colors.get(x, '#FFFFFF') for x in df_sorted['Orientation politique']])
-    ax1.set_title('Prédictions Nostradamus')
-    ax1.set_xlabel('Pourcentage de votes')
-    ax1.set_ylabel('Orientation politique')
-    ax1.spines['top'].set_visible(False)
-    ax1.spines['right'].set_visible(False)
-    ax1.spines['bottom'].set_visible(False)
-    ax1.spines['left'].set_visible(False)
-    for index, value in enumerate(df_sorted['predictions_2024']):
-        ax1.text(value, index, f'{value}%', va='center')
-    st.pyplot(fig1)
-
-# Plot for Sondages_2024
-with col2:
-    fig2, ax2 = plt.subplots(figsize=(8, 8))
-    ax2.barh(df_sorted_sondages['Orientation politique'], df_sorted_sondages['Sondages_2024'], color=[colors.get(x, '#FFFFFF') for x in df_sorted_sondages['Orientation politique']])
-    ax2.set_title('Sondages Ipsos - 1-6 mars 2024 - 5169 répondants')
-    ax2.set_xlabel('Pourcentage de votes')
-    ax2.set_ylabel('Orientation politique')
-    ax2.spines['top'].set_visible(False)
-    ax2.spines['right'].set_visible(False)
-    ax2.spines['bottom'].set_visible(False)
-    ax2.spines['left'].set_visible(False)
-    for index, value in enumerate(df_sorted_sondages['Sondages_2024']):
-        ax2.text(value, index, f'{value}%', va='center')
-    st.pyplot(fig2)
+# Display the pivoted DataFrame using Streamlit
+st.write("Voici le DataFrame pivoté :")
+st.write(pivoted_df)
