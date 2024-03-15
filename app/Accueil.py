@@ -16,6 +16,7 @@ def main():
     st.write("- Tous les cinq ans, les citoyens des États membres de l'Union européenne votent pour élire leurs représentants au Parlement européen.")
     st.write("- Chaque État membre a un nombre de sièges proportionnel à sa population.")
     st.write("- Les résultats des élections européennes impactent directement le quotidien des citoyens de l'Union européenne. C'est grâce au Parlement européen que des décisions cruciales pour notre environnement ont été prises, telles que l'interdiction des plastiques à usage unique. De même, le règlement général sur la protection des données (RGPD), adopté par le Parlement européen, renforce nos droits fondamentaux à la vie privée et à la sécurité des données dans un monde de plus en plus numérisé.")
+    st.write("Vous trouverez également un lien dans la barre latérale pour vérifier votre inscription sur la liste électorale pour les élections européennes de juin, ainsi qu'un compte à rebours pour la clôture des inscriptions en ligne.")
     st.write("Chaque vote aux élections européennes compte pour façonner un avenir plus durable, juste et sûr pour tous les citoyens européens !")
 
     # Box bleue avec lien pour vérifier le statut électoral
