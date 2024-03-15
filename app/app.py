@@ -18,7 +18,7 @@ def count_down(target_datetime):
             countdown_placeholder.subheader(f"Temps restant : {time_remaining}")
             time.sleep(1)
         
-        st.subheader("Fin des inscriptions en ligne")
+        st.sidebar.subheader("Fin des inscriptions en ligne")
 
 def main():
     st.title("Bienvenue sur le site de Nostradamus")
