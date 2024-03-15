@@ -20,14 +20,17 @@ def main():
                         "<a style='color: white; text-decoration: none;' href='https://www.service-public.fr/particuliers/vosdroits/demarches-et-outils/ISE'>Vérifiez votre statut électoral !</a>"
                         "</div>", unsafe_allow_html=True)
 
-    # Countdown timer until 1st of May 2024
-    target_date = datetime(2024, 5, 1)
-    remaining_time = target_date - datetime.now()
-
-    st.sidebar.markdown("<div style='background-color: #FFD700; padding: 8px; border-radius: 5px;'>"
-                        "<div style='color: black; font-size: small;'>"
-                        f"<h3>Temps restant jusqu'au 1er mai 2024 : {remaining_time.days} jours {remaining_time.seconds // 3600} heures {remaining_time.seconds % 3600 // 60} minutes {remaining_time.seconds % 60} secondes</h3>"
-                        "</div>"
+     # Countdown timer until 1st of May 2024
+    st.sidebar.subheader("Temps restant avant la fin des inscriptions en ligne :")
+    remaining_time = st.sidebar.empty()
+    
+    # Reactive programming to update the countdown timer automatically
+    while True:
+        target_date = datetime(2024, 5, 1)
+        current_date = datetime.now()
+        remaining = target_date - current_date
+        remaining_time.write(f"{remaining.days} jours {remaining.seconds // 3600} heures {(remaining.seconds % 3600) // 60} minutes {remaining.seconds % 60} secondes")
+        st.experimental_rerun()
                         "</div>", unsafe_allow_html=True)
 
     # Sur ce site
