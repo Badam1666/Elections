@@ -1,0 +1,10 @@
+import streamlit as st
+
+# Embed Google Slides presentation using an <iframe> tag
+st.markdown(
+    """
+    <iframe src="https://docs.google.com/presentation/d/1zKvvjRn7vbbdqqKRBzoQ6MjihuqhPbQgAGjBSxsGNc0/pub?start=false&loop=false&delayms=3000" 
+    width="100%" height="500px"></iframe>
+    """,
+    unsafe_allow_html=True
+)
