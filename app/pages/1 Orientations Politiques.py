@@ -41,7 +41,7 @@ st.title('Election Predictions')
 col1, col2 = st.columns(2)
 
 # Plot for Sondages_2024
-with col1:
+with col2:
     fig1, ax1 = plt.subplots(figsize=(8, 8))
     ax1.barh(df_sorted_sondages['Orientation politique'], df_sorted_sondages['Sondages_2024'], color=[colors.get(x, '#FFFFFF') for x in df_sorted_sondages['Orientation politique']])
     ax1.set_title('Sondages Ipsos - 1-6 mars 2024 - 5169 répondants')
@@ -56,7 +56,7 @@ with col1:
     st.pyplot(fig1)
 
 # Plot for predictions_2024
-with col2:
+with col1:
     fig2, ax2 = plt.subplots(figsize=(8, 8))
     ax2.barh(df_sorted['Orientation politique'], df_sorted['predictions_2024'], color=[colors.get(x, '#FFFFFF') for x in df_sorted['Orientation politique']])
     ax2.set_title('Prédictions Nostradamus')
