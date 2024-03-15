@@ -1,10 +1,12 @@
 import streamlit as st
+import time
+from datetime import datetime, timedelta
 import pandas as pd
 import matplotlib.pyplot as plt
-from datetime import datetime
 
 def main():
     st.set_page_config(page_title="Elections européennes", page_icon="🗳️", layout="centered", initial_sidebar_state="auto", menu_items=None)
+
     st.title("Bienvenue sur le site de Nostradamus")
     st.subheader("Les élections européennes à votre portée")
 
@@ -15,12 +17,7 @@ def main():
     st.write("- Les résultats des élections européennes impactent directement le quotidien des citoyens de l'Union européenne. C'est grâce au Parlement européen que des décisions cruciales pour notre environnement ont été prises, telles que l'interdiction des plastiques à usage unique. De même, le règlement général sur la protection des données (RGPD), adopté par le Parlement européen, renforce nos droits fondamentaux à la vie privée et à la sécurité des données dans un monde de plus en plus numérisé.")
     st.write("Chaque vote aux élections européennes compte pour façonner un avenir plus durable, juste et sûr pour tous les citoyens européens !")
 
-    # Box bleue avec lien pour vérifier le statut électoral
-    st.sidebar.markdown("<div style='background-color: #4169E1; padding: 8px; border-radius: 5px; margin-bottom: 10px;'>"
-                        "<a style='color: white; text-decoration: none;' href='https://www.service-public.fr/particuliers/vosdroits/demarches-et-outils/ISE'>Vérifiez votre statut électoral !</a>"
-                        "</div>", unsafe_allow_html=True)
-
-     # Countdown timer until 1st of May 2024
+    # Countdown timer until 1st of May 2024
     st.sidebar.subheader("Temps restant avant la fin des inscriptions en ligne :")
     remaining_time = st.sidebar.empty()
     
@@ -31,7 +28,6 @@ def main():
         remaining = target_date - current_date
         remaining_time.write(f"{remaining.days} jours {remaining.seconds // 3600} heures {(remaining.seconds % 3600) // 60} minutes {remaining.seconds % 60} secondes")
         st.experimental_rerun()
-                        "</div>", unsafe_allow_html=True)
 
     # Sur ce site
     st.subheader("Sur ce site")
