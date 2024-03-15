@@ -24,12 +24,15 @@ if not filtered_data.empty:
     # Display filtered data
     st.subheader('Election Data for Selected Commune(s)')
 
+    # Filter data for years 2014 and 2019
+    filtered_data = filtered_data[filtered_data['annee'].isin([2014, 2019])]
+    
     # Pivot the data to have years as columns and cities as rows
     pivoted_data = filtered_data.pivot_table(index='libelle_commune', columns='annee', aggfunc='sum').fillna(0)
     
-    # Convert the pivot table to a DataFrame
+    # Convert the pivot table to a DataFrame and reset index
     df = pivoted_data.reset_index()
-    df.columns.name = None  # Remove the name of the columns index
+    df.columns = ['Commune', '2014', '2019']  # Rename columns
     
     # Display the DataFrame
     st.write(df)
