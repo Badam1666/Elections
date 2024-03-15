@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 
 def count_down(target_datetime):
     with st.sidebar:
-        st.title("Countdown")
+        st.title("Temps restant avant la fin des inscriptions en ligne")
         countdown_placeholder = st.empty()
         while datetime.now() < target_datetime:
             remaining_time = target_datetime - datetime.now()
