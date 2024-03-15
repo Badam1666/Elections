@@ -41,7 +41,12 @@ def main():
         minutes, seconds = divmod(remainder, 60)
         time_remaining = f"{days} jours, {hours} heures, {minutes} minutes, {seconds} secondes"
         
-        countdown_placeholder.markdown(f"<h3>Temps restant avant la fin des inscriptions en ligne : {time_remaining}</h3>", unsafe_allow_html=True)
+        countdown_placeholder.markdown("<div style='background-color: #FFFF00; padding: 10px; border-radius: 5px;'>"
+                                       "<div style='color: black; font-size: small;'>"
+                                       "<h3>Temps restant avant la fin des inscriptions en ligne :</h3>"
+                                       f"<p>{time_remaining}</p>"
+                                       "</div>"
+                                       "</div>", unsafe_allow_html=True)
         
         time.sleep(1)
 
