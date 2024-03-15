@@ -27,9 +27,14 @@ if not filtered_data.empty:
     # Pivot the data to have years as columns and cities as rows
     pivoted_data = filtered_data.pivot_table(index='libelle_commune', columns='annee', aggfunc='sum').fillna(0)
     
+    # Determine the party with the most votes for each year
+    pivoted_data['Tête 2014'] = pivoted_data[[('extreme_gauche', 2014), ('gauche', 2014), ('centre_gauche', 2014), ('centre', 2014), ('centre_droite', 2014), ('droite', 2014), ('extreme_droite', 2014), ('divers', 2014)]].idxmax(axis=1)
+    pivoted_data['Tête 2019'] = pivoted_data[[('extreme_gauche', 2019), ('gauche', 2019), ('centre_gauche', 2019), ('centre', 2019), ('centre_droite', 2019), ('droite', 2019), ('extreme_droite', 2019), ('divers', 2019)]].idxmax(axis=1)
+    
     # Rearrange and rename columns
     pivoted_data = pivoted_data[[
-        ('votants', 2014), ('Tête', 2014), ('votants', 2019), ('Tête', 2019),
+        ('votants', 2014), ('Tête 2014'),
+        ('votants', 2019), ('Tête 2019'),
         ('blancs_et_nuls', 2014), ('blancs_et_nuls', 2019),
         ('extreme_gauche', 2014), ('extreme_gauche', 2019),
         ('gauche', 2014), ('gauche', 2019),
