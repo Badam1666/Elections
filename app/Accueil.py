@@ -164,7 +164,7 @@ def main():
     }
 
     for year, results in election_results.items():
-        st.write(f"Année {year}")
+        st.write(f"Année {year} :")
         for orientation, parties in results.items():
             st.write(f"- {orientation} : {parties}")
 
