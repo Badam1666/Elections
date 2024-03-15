@@ -25,18 +25,18 @@ if not filtered_data.empty:
     st.subheader('Cherchez votre commune dans la barre à gauche pour afficher les résultats de 2014 et 2019 ')
 
     # Group by commune and sum votes for each party
-    grouped_data = filtered_data.groupby('libelle_commune').sum().reset_index()
+    grouped_data = filtered_data.groupby(['libelle_commune', 'annee']).sum().reset_index()
     
     # Identify the party that got the most votes for each commune
     grouped_data['Tête'] = grouped_data[['extreme_gauche', 'gauche', 'centre_gauche', 'centre', 'centre_droite', 'droite', 'extreme_droite']].idxmax(axis=1)
     
     # Rearrange and rename columns
     grouped_data = grouped_data[[
-        'libelle_commune', 'votants', 'Tête',
+        'libelle_commune', 'annee', 'votants', 'Tête',
         'blancs_et_nuls', 'extreme_gauche', 'gauche', 'centre_gauche',
         'centre', 'centre_droite', 'droite', 'extreme_droite'
     ]]
-    grouped_data.columns = ['Commune', 'Votants', 'Tête',
+    grouped_data.columns = ['Commune', 'Année', 'Votants', 'Tête',
                             'Blancs et nuls', 'Extreme gauche', 'Gauche', 'Centre gauche',
                             'Centre', 'Centre droite', 'Droite', 'Extreme droite']
     
