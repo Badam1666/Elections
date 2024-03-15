@@ -3,7 +3,9 @@ import time
 from datetime import datetime, timedelta
 
 def count_down(target_datetime):
-    with st.empty():
+    with st.sidebar:
+        st.title("Countdown")
+        countdown_placeholder = st.empty()
         while datetime.now() < target_datetime:
             remaining_time = target_datetime - datetime.now()
             days = remaining_time.days
@@ -12,11 +14,10 @@ def count_down(target_datetime):
             
             time_remaining = f"{days} jours, {hours} heures, {minutes} minutes, {seconds} secondes"
             
-            st.title("Countdown")
-            st.header(f"Temps restant : {time_remaining}")
+            countdown_placeholder.subheader(f"Temps restant : {time_remaining}")
             time.sleep(1)
         
-        st.header("Fin des inscriptions en ligne")
+        st.subheader("Fin des inscriptions en ligne")
 
 def main():
     st.title("Bienvenue sur le site de Nostradamus")
