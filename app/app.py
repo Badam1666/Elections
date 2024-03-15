@@ -7,7 +7,6 @@ def main():
     st.subheader("Les élections européennes à votre portée")
 
     # Explication des élections européennes
-    st.write("Explication des élections")
     st.write("Les prochaines élections européennes auront lieu du 6 au 9 juin 2024. Vous ne savez pas trop comment ces élections fonctionnent et quels sont leurs enjeux ? Pas d'inquiétude, la team Nostradamus vous aide à y voir plus clair !")
     st.write("Tous les cinq ans, les citoyens des États membres de l'Union européenne votent pour élire leurs représentants au Parlement européen.")
     st.write("Chaque État membre a un nombre de sièges proportionnel à sa population.")
@@ -27,21 +26,12 @@ def main():
                         "</div>", unsafe_allow_html=True)
 
  
-    # Description du site
-    st.header("À propos de Nostradamus")
-    st.write("Présentation de notre site, objectif, ce qu'on propose etc")
-    st.write("A partir de l'analyse des résultats des élections européennes en France depuis 2004, nous mettons en lumière deux critères qui ont un impact significatif sur les décisions de vote. En utilisant des algorithmes, nous proposons une prédiction des résultats des prochaines élections de juin 2024.")
-    
-    # Ajout de nouvelles informations
-    st.header("Plus sur le site Nostradamus")
-    st.write("Sur cette page, vous pouvez trouver les détails de comment nous avons classé les partis politiques en orientations politiques. Sur cette page, vous pouvez trouver une carte des résultats des élections européennes par département de 2004 à 2019. Sur cette page, vous pouvez consulter les résultats de 2014 et 2019 dans votre commune.")
     
     # Nos prévisions
     st.header("Nos Prévisions")
-    st.write("Parties du site : Différentes orientations, Carte département")
-    st.write("Nous avons regroupé les partis au sein d'orientations politiques. Sur cette carte, vous pouvez consulter les orientations politiques arrivées en tête dans chaque département sur les quatre dernières élections européennes.")
-    st.write("Prédictions")
-    st.write("A l'image de Nostradamus, célèbre pour ses prédictions sur l'avenir, nous vous proposons des prédictions des résultats des prochaines élections européennes.")
+    st.write("Nous sommes des étudiants à Le Wagon, une école de codage renommée, et nous avons entrepris une démarche de collecte de données auprès de Data gouv pour mener nos recherches. Notre objectif est de rendre les élections européennes accessibles à tous, afin que chacun puisse comprendre les enjeux et participer activement à la vie démocratique.
+
+Pour prédire les élections de 2024, nous avons utilisé des algorithmes de machine learning, une approche moderne qui nous a permis d'analyser les tendances passées et de faire des projections pour l'avenir. Cependant, l'algorithme ne prend pas en compte le climat politique et social et a ses limites dans la prédiction de futures élections. Vous trouverez ci-dessous les prévisions de Nostradamus, notre plateforme de prédiction, comparées aux sondages Ipsos réalisés au début du mois de Mars.")
 
     # Countdown jusqu'au 1er Mai à minuit
     target_datetime = datetime(datetime.now().year, 5, 1, 0, 0)
