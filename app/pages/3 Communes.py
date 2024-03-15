@@ -37,7 +37,10 @@ if not filtered_data.empty:
         for metric in metrics:
             metric_data = {}
             for year, year_data in commune_data.groupby('annee'):
-                metric_data[year] = year_data[metric].values[0] if not year_data.empty else 0
+                if metric in year_data:
+                    metric_data[year] = year_data[metric].values[0]
+                else:
+                    metric_data[year] = 0
             table_data[metric] = metric_data
         
         table_df = pd.DataFrame(table_data)
