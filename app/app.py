@@ -10,10 +10,11 @@ def main():
 
     # Explication des élections européennes
     st.write("Les prochaines élections européennes auront lieu du 6 au 9 juin 2024. Vous ne savez pas trop comment ces élections fonctionnent et quels sont leurs enjeux ? Pas d'inquiétude, la team Nostradamus vous aide à y voir plus clair !")
-    st.write("Tous les cinq ans, les citoyens des États membres de l'Union européenne votent pour élire leurs représentants au Parlement européen.")
-    st.write("Chaque État membre a un nombre de sièges proportionnel à sa population.")
-    st.write("Les résultats des élections européennes impactent directement le quotidien des citoyens de l'Union européenne. C'est grâce au Parlement européen que des décisions cruciales pour notre environnement ont été prises, telles que l'interdiction des plastiques à usage unique. De même, le règlement général sur la protection des données (RGPD), adopté par le Parlement européen, renforce nos droits fondamentaux à la vie privée et à la sécurité des données dans un monde de plus en plus numérisé.")
+    st.write("- Tous les cinq ans, les citoyens des États membres de l'Union européenne votent pour élire leurs représentants au Parlement européen.")
+    st.write("- Chaque État membre a un nombre de sièges proportionnel à sa population.")
+    st.write("- Les résultats des élections européennes impactent directement le quotidien des citoyens de l'Union européenne. C'est grâce au Parlement européen que des décisions cruciales pour notre environnement ont été prises, telles que l'interdiction des plastiques à usage unique. De même, le règlement général sur la protection des données (RGPD), adopté par le Parlement européen, renforce nos droits fondamentaux à la vie privée et à la sécurité des données dans un monde de plus en plus numérisé.")
     st.write("Chaque vote aux élections européennes compte pour façonner un avenir plus durable, juste et sûr pour tous les citoyens européens !")
+
 
     # Box bleue avec lien pour vérifier le statut électoral
     st.sidebar.markdown("<div style='background-color: #4169E1; padding: 8px; border-radius: 5px; margin-bottom: 10px;'>"
@@ -28,10 +29,10 @@ def main():
                         "</div>", unsafe_allow_html=True)
 
     # Sur ce site
-    st.title("Sur ce site")
+    st.header("Sur ce site")
     st.write("Bienvenue sur le site de Nostradamus, votre source d'informations essentielles sur les élections européennes. Sur notre plateforme, vous trouverez :")
     st.write("1. **Orientations Politiques** : Découvrez comment nous classons les partis politiques en différentes orientations politiques, vous permettant de mieux comprendre les différentes idéologies et positions sur les questions européennes.")
-    st.write("2. **Carte des Résultats** : Explorez une carte interactive des résultats des élections européennes par département, vous permettant de visualiser les tendances politiques à travers la France depuis 2004.")
+    st.write("2. **Carte des Résultats** : Explorez une carte interactive des résultats des élections européennes par département afin de visualiser les tendances politiques à travers la France depuis 2004.")
     st.write("3. **Résultats par Commune** : Consultez les résultats des élections européennes de 2014 et 2019 dans votre commune, vous donnant un aperçu détaillé de la participation et des votes pour chaque parti politique.")
     st.write("Notre objectif est de rendre les élections européennes accessibles à tous, afin que chacun puisse prendre des décisions éclairées et participer pleinement à la démocratie européenne.")
 
