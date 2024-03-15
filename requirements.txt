@@ -7,3 +7,4 @@ geemap
 streamlit_folium
 Pillow
 st_pages
+seaborn
