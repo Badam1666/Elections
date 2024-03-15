@@ -9,13 +9,7 @@ import geemap.foliumap as geemap
 from PIL import Image, ImageDraw, ImageFont
 import io
 
-import streamlit as st
-
-def main():
-    st.set_page_config(page_title="Carte des votes")
-
-if __name__ == "__main__":
-    main()
+st.set_page_config(page_title="Elections européennes", page_icon="🗳️", layout="centered", initial_sidebar_state="auto", menu_items=None)
 
 # Replace the URL with the correct raw content URL for your pickle file on GitHub
 github_pickle_url = 'https://github.com/Badam1666/Elections/raw/main/raw_data/elections_geo_dpt.pkl'
