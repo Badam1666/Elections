@@ -8,7 +8,6 @@ def show_page_3():
     st.write("Contenu de la page 3")
     # Add more content or Streamlit components as needed for page 3
 
-import streamlit as st
 import time
 from datetime import datetime, timezone, timedelta
 
@@ -31,8 +30,7 @@ def main():
     st.title("Countdown to May 1st, 2024")
     target_datetime = datetime(2024, 5, 1, 0, 0, tzinfo=timezone.utc)
     
-    if st.button("START"):
-        count_down(target_datetime)
+    count_down(target_datetime)
 
 if __name__ == '__main__':
     main()
