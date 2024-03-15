@@ -1,6 +1,8 @@
 import streamlit as st
 import time
 from datetime import datetime, timedelta
+import pandas as pd
+import matplotlib.pyplot as plt
 
 def main():
     st.title("Bienvenue sur le site de Nostradamus")
@@ -37,30 +39,6 @@ def main():
     st.header("Nos Prédictions")
     st.write("Nous sommes des étudiants à Le Wagon, une école de codage renommée, et nous avons entrepris une démarche de collecte de données auprès de Data gouv pour mener nos recherches. Notre objectif est de rendre les élections européennes accessibles à tous, afin que chacun puisse comprendre les enjeux et participer activement à la vie démocratique.")
     st.write("Pour prédire les élections de 2024, nous avons utilisé des algorithmes de machine learning, une approche moderne qui nous a permis d'analyser les tendances passées et de faire des projections pour l'avenir. Cependant, l'algorithme ne prend pas en compte le climat politique et social et a ses limites dans la prédiction de futures élections. Vous trouverez ci-dessous les prévisions de Nostradamus, notre plateforme de prédiction, comparées aux sondages Ipsos réalisés au début du mois de Mars.")
-
-    # Countdown jusqu'au 1er Mai à minuit
-    target_datetime = datetime(datetime.now().year, 5, 1, 0, 0)
-
-    countdown_placeholder = st.sidebar.empty()
-
-    while datetime.now() < target_datetime:
-        remaining_time = target_datetime - datetime.now()
-        days = remaining_time.days
-        hours, remainder = divmod(remaining_time.seconds, 3600)
-        minutes, seconds = divmod(remainder, 60)
-        time_remaining = f"{days} jours, {hours} heures, {minutes} minutes, {seconds} secondes"
-        
-        countdown_placeholder.markdown("<div style='background-color: #FFD700; padding: 8px; border-radius: 5px;'>"
-                                       "<div style='color: black; font-size: small;'>"
-                                       f"<p>{time_remaining}</p>"
-                                       "</div>"
-                                       "</div>", unsafe_allow_html=True)
-        
-        time.sleep(1)
-
-    st.title("Comparaison Prédictions et Sondages")
-    st.write("Nous comparons ici les prédictions de Nostradamus aux résultats des sondages Ipsos.")
-    st.write("Vous pouvez voir ci-dessous les prévisions de Nostradamus pour les élections de 2024, ainsi que les résultats des sondages Ipsos réalisés au début du mois de Mars.")
 
     # Load data
     url = "https://github.com/AliciaD31/elections-nostradamus/blob/main/predictions2024_Python.csv?raw=true"
