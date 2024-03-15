@@ -1,3 +1,4 @@
+
 import streamlit as st
 import time
 from datetime import datetime, timedelta
@@ -126,31 +127,41 @@ def main():
             'Extrême gauche': "LEXG, LCOP",
             'Gauche': "LSOC, LDVD",
             'Centre gauche': "LVEC",
-            'Centre': "-",
-            'Centre droite': "LUCD",
-            'Droite': "LUMP, LDVD",
-            'Extrême droite': "LFN",
-            'Divers': "LCOP, LREG"
+            'Centre': "LCMD",
+            'Centre droite': "-",
+            'Droite': "LMAJ, LDVD",
+            'Extrême droite': "LFN, LEXD",
+            'Divers': "LAUT, LREG"
         },
         2014: {
-            'Extrême gauche': "LFG",
-            'Gauche': "LUG",
-            'Centre gauche': "LUG",
-            'Centre': "-",
-            'Centre droite': "LUD",
-            'Droite': "LUD",
-            'Extrême droite': "LFN",
-            'Divers': "LDVD, LDIV"
+            'Extrême gauche': "LEXG, LFG",
+            'Gauche': "LDVG, LUG",
+            'Centre gauche': "LVEC",
+            'Centre': "LUC",
+            'Centre droite': "-",
+            'Droite': "LDVD, LUMP",
+            'Extrême droite': "LFN, LEXD",
+            'Divers': "LDIV"
         },
         2019: {
-            'Extrême gauche': "LFG",
-            'Gauche': "LUG",
-            'Centre gauche': "LUG",
-            'Centre': "-",
-            'Centre droite': "LUD",
-            'Droite': "LUD",
-            'Extrême droite': "LRN",
-            'Divers': "LDVD, LDIV"
+            'Extrême gauche': "La France Insoumise, L'Europe des gens",
+            'Gauche': "Liste citoyenne",
+            'Centre gauche': "Europe Ecologie, Envie d'Europe, Urgence Ecologie",
+            'Centre': "Renaissance",
+            'Centre droite': "Union Droite Centre, Les européens",
+            'Droite': "-",
+            'Extrême droite': "Prenez le pouvoir (RN), Debout ! La France, Ensemble pour le Frexit",
+            'Divers': "Parti animaliste"
+        },
+        2024: {
+            'Extrême gauche': "La France Insoumise, Lutte ouvrière, NPA, PCF",
+            'Gauche': "Parti socialiste et Place Publique",
+            'Centre gauche': "Europe Ecologie les Verts,Parti radical de Gauche",
+            'Centre': "Renaissance, Ecologie au centre",
+            'Centre droite': "Alliance rurale",
+            'Droite': "Les republicains, Notre Europe",
+            'Extrême droite': "Debout ! La France, Reconquête, Rassemblement national, Union populaire républicaine",
+            'Divers': "Parti animaliste"
         }
     }
 
