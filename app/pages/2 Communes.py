@@ -1,3 +1,6 @@
+import streamlit as st
+import pandas as pd
+
 # Load data
 @st.cache
 def load_data():
