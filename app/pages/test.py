@@ -152,7 +152,6 @@ def main():
             'Droite': "-",
             'Extrême droite': "Prenez le pouvoir (RN), Debout ! La France, Ensemble pour le Frexit",
             'Divers': "Parti animaliste"
-        }
         },
         2024: {
             'Extrême gauche': "La France Insoumise, Lutte ouvrière, NPA, PCF",
