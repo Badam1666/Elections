@@ -42,7 +42,7 @@ if not filtered_data.empty:
     # Determine the winner party for each commune
     pivoted_data['Winner'] = pivoted_data[['extreme_gauche_percentage_2019', 'gauche_percentage_2019', 'centre_gauche_percentage_2019', 'centre_percentage_2019', 'centre_droite_percentage_2019', 'droite_percentage_2019', 'extreme_droite_percentage_2019', 'divers_percentage_2019']].idxmax(axis=1)
     
-    # Display results
+    # Display results as a table
     st.write('Résultats des élections par commune:')
     st.write(pivoted_data)
 
