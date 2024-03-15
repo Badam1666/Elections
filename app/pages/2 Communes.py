@@ -56,6 +56,9 @@ if not filtered_data.empty:
         null_votes = commune_data['null'].sum()
         winner_party = commune_data.iloc[0]['Tête']
         
+        # Add winner party column to party_df
+        party_df['Tête'] = winner_party
+        
         # Create a DataFrame for additional information
         info_df = pd.DataFrame({
             'Métrique': ['Total des votes', 'Votes nuls/blancs', 'Parti gagnant'],
