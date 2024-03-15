@@ -2,7 +2,7 @@ import streamlit as st
 st.set_page_config(page_title="Elections européennes", page_icon="🗳️", layout="centered", initial_sidebar_state="auto", menu_items=None)
 
 
-
+import streamlit as st
 import pandas as pd
 
 # Load data
@@ -30,7 +30,18 @@ filtered_data = data[data['libelle_commune'].str.lower().str.contains(search_que
 if not filtered_data.empty:
     # Display filtered data
     st.subheader('Election Data for Selected Commune(s)')
-    st.write(filtered_data)
+
+    # Split the page into two columns
+    col1, col2 = st.columns(2)
+
+    # Display data for each year in a separate column
+    for year in filtered_data['annee'].unique():
+        year_data = filtered_data[filtered_data['annee'] == year].iloc[:, 2:]
+        
+        # Display data in a table format
+        with col1 if year == 2014 else col2:
+            st.write(f'**Year: {year}**')
+            st.write(year_data)
 
     # Calculate percentage difference for selected commune(s)
     years = filtered_data['annee'].unique()
@@ -46,4 +57,3 @@ if not filtered_data.empty:
 
 else:
     st.write('No data available for the selected commune.')
-
