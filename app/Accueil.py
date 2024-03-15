@@ -1,5 +1,5 @@
 import streamlit as st
-from datetime import datetime, timedelta
+from datetime import datetime
 
 def main():
     st.title("Bienvenue sur le site de Nostradamus")
@@ -23,7 +23,7 @@ def main():
 
     countdown_placeholder = st.sidebar.empty()
 
-    while remaining_time.total_seconds() > 0:
+    if remaining_time.total_seconds() > 0:
         days = remaining_time.days
         hours, remainder = divmod(remaining_time.seconds, 3600)
         minutes, seconds = divmod(remainder, 60)
@@ -32,13 +32,12 @@ def main():
                                       f"<h3>Temps restant jusqu'au 1er mai 2024 : {days} jours {hours} heures {minutes} minutes {seconds} secondes</h3>"
                                       "</div>"
                                       "</div>", unsafe_allow_html=True)
-        remaining_time = target_date - datetime.now()
-
-    countdown_placeholder.markdown("<div style='background-color: #FFD700; padding: 8px; border-radius: 5px;'>"
-                                  "<div style='color: black; font-size: small;'>"
-                                  "<h3>Le temps est écoulé !</h3>"
-                                  "</div>"
-                                  "</div>", unsafe_allow_html=True)
+    else:
+        countdown_placeholder.markdown("<div style='background-color: #FFD700; padding: 8px; border-radius: 5px;'>"
+                                      "<div style='color: black; font-size: small;'>"
+                                      "<h3>Le temps est écoulé !</h3>"
+                                      "</div>"
+                                      "</div>", unsafe_allow_html=True)
 
     # Sur ce site
     st.subheader("Sur ce site")
@@ -50,10 +49,11 @@ def main():
     # Répartition
     st.subheader("Répartition par orientation politique")
     st.write("Durant les 20 dernières annnées d'élections européennes, les noms des partis et nuances politiques ont changé considérablement. Pour pouvoir être cohérent dans nos analyses et dans nos prédictions, nous avons décidé de les classer par orientation politique. Nous avons utilisé le site internet de chacun de ces partis et les informations de l'Assemblée Nationale pour effectuer ce tri.")
-
+    
     # Nos prédictions
     st.subheader("Nos prédictions")
     st.write("Nous sommes des étudiants en Data Analyse à Le Wagon, nous avons entrepris une démarche de collecte de données auprès de Data gouv pour mener nos recherches. Notre objectif est de rendre les élections européennes accessibles à tous, afin que chacun puisse comprendre les enjeux et participer activement à la vie démocratique.")
+    st.write("Pour prédire les résultats des élections de 2024, nous avons utilisé des algorithmes de machine learning, une technologie d'intelligence artificielle qui nous a permis d'analyser les tendances passées et de faire des projections pour 2024. L'algorithme présente quelques limites dans le sens où il ne prend pas en compte le climat politique et social actuel. Vous trouverez ci-dessous nos prévisions que nous avons comparées au sondage Ipsos réalisé au début du mois de mars 2024.")
 
     # Répartition par année et orientation politique
     st.subheader("Répartition par année et orientation politique")
@@ -117,4 +117,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
