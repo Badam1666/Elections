@@ -32,7 +32,7 @@ def main():
     # Countdown jusqu'au 1er Mai à minuit
     target_datetime = datetime(datetime.now().year, 5, 1, 0, 0)
 
-    countdown_placeholder = st.empty()
+    countdown_placeholder = st.sidebar.empty()
 
     while datetime.now() < target_datetime:
         remaining_time = target_datetime - datetime.now()
