@@ -7,19 +7,38 @@ def main():
     st.subheader("Les élections européennes à votre portée")
 
     # Explication des élections européennes
+    st.write("Proposition de texte :")
+    st.write("Explication des élections")
     st.write("Les prochaines élections européennes auront lieu du 6 au 9 juin 2024. Vous ne savez pas trop comment ces élections fonctionnent et quels sont leurs enjeux ? Pas d'inquiétude, la team Nostradamus vous aide à y voir plus clair !")
+    st.write("- Tous les cinq ans, les citoyens des États membres de l'Union européenne votent pour élire leurs représentants au Parlement européen.")
+    st.write("- Chaque État membre a un nombre de sièges proportionnel à sa population.")
+    st.write("- Les résultats des élections européennes impactent directement le quotidien des citoyens de l'Union européenne. C'est grâce au Parlement européen que des décisions cruciales pour notre environnement ont été prises, telles que l'interdiction des plastiques à usage unique. De même, le règlement général sur la protection des données (RGPD), adopté par le Parlement européen, renforce nos droits fondamentaux à la vie privée et à la sécurité des données dans un monde de plus en plus numérisé.")
+    st.write("Chaque vote aux élections européennes compte pour façonner un avenir plus durable, juste et sûr pour tous les citoyens européens !")
 
+    # Box bleue avec lien pour vérifier le statut électoral
+    st.sidebar.markdown("<div style='background-color: #4169E1; padding: 8px; border-radius: 5px; margin-bottom: 10px;'>"
+                        "<a style='color: white; text-decoration: none;' href='https://www.service-public.fr/particuliers/vosdroits/demarches-et-outils/ISE'>Vérifiez votre statut électoral !</a>"
+                        "</div>", unsafe_allow_html=True)
+    
+    # Box jaune avec countdown
+    st.sidebar.markdown("<div style='background-color: #FFD700; padding: 8px; border-radius: 5px;'>"
+                        "<div style='color: black; font-size: small;'>"
+                        "<h3>Temps restant avant la fin des inscriptions en ligne :</h3>"
+                        "</div>"
+                        "</div>", unsafe_allow_html=True)
+
+ 
     # Description du site
-    st.header("Description du site")
-    st.write("Sur cette page, vous pouvez trouver les détails de comment nous avons classé les partis politiques en orientations politiques. Sur cette page, vous pouvez trouver une carte des résultats des élections européennes par département de 2004 à 2019. Sur cette page, vous pouvez consulter les résultats de 2014 et 2019 dans votre commune.")
-
-    # A propos de Nostradamus
-    st.header("A propos de Nostradamus")
-    st.write("Nous sommes des étudiants à Le Wagon et nous avons récolté des données de Data gouv pour faire nos recherches. Nous tentons de rendre accessibles les élections européennes à tout le monde.")
+    st.header("À propos de Nostradamus")
+    st.write("Présentation de notre site, objectif, ce qu'on propose etc")
+    st.write("A partir de l'analyse des résultats des élections européennes en France depuis 2004, nous mettons en lumière deux critères qui ont un impact significatif sur les décisions de vote. En utilisant des algorithmes, nous proposons une prédiction des résultats des prochaines élections de juin 2024.")
 
     # Nos prévisions
     st.header("Nos Prévisions")
-    st.write("Nous avons utilisé des algorithmes de machine learning pour prévoir les élections 2024. Vous pouvez voir ci-dessous les prévisions de Nostradamus comparées aux sondages Ipsos de début Mars.")
+    st.write("Parties du site : Différentes orientations, Carte département")
+    st.write("Nous avons regroupé les partis au sein d'orientations politiques. Sur cette carte, vous pouvez consulter les orientations politiques arrivées en tête dans chaque département sur les quatre dernières élections européennes.")
+    st.write("Prédictions")
+    st.write("A l'image de Nostradamus, célèbre pour ses prédictions sur l'avenir, nous vous proposons des prédictions des résultats des prochaines élections européennes.")
 
     # Countdown jusqu'au 1er Mai à minuit
     target_datetime = datetime(datetime.now().year, 5, 1, 0, 0)
