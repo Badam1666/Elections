@@ -41,4 +41,15 @@ et de participer à la démocratie européenne.")
 
     # Description du site
     st.header("À propos de Nostradamus")
-    st.write("Nostradamus est votre source de prévisions électorales, vous aid
+    st.write("""Nostradamus est votre source de prévisions électorales, vous aidant à comprendre les tendances
+et les enjeux des élections européennes. Nous mettons à votre disposition des analyses approfondies, des
+données en temps réel et des outils interactifs pour vous permettre de prendre des décisions éclairées.""")
+
+    # Nos prévisions
+    st.header("Nos Prévisions")
+    st.write("Nos experts prévoient une participation record pour les prochaines élections européennes. \
+Nous prévoyons également des changements significatifs dans la composition du Parlement européen, avec \
+des implications majeures pour l'avenir de l'Union européenne.")
+
+if __name__ == '__main__':
+    main()
