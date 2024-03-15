@@ -3,6 +3,9 @@ import pandas as pd
 import streamlit as st
 import pandas as pd
 
+import streamlit as st
+import pandas as pd
+
 # Load data
 @st.cache
 def load_data():
@@ -14,6 +17,13 @@ data = load_data()
 
 # Streamlit app
 st.title('Election Data Explorer')
+
+# Multiselect widget for commune selection
+search_query = st.sidebar.text_input('Search for a commune (code or name):').lower()
+
+# Filter options based on search query
+options = data['libelle_commune'].str.lower().unique()
+suggested_options = [option for option in options if search_query in option]
 
 # Multiselect widget for commune selection
 selected_communes = st.sidebar.multiselect('Select Commune(s):', suggested_options)
