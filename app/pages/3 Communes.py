@@ -30,14 +30,27 @@ if not filtered_data.empty:
         # Filter data for the current commune
         commune_data = filtered_data[filtered_data['libelle_commune'].str.lower() == commune.lower()]
         
+        # Calculate total votes for each year
+        commune_data['total_votes'] = commune_data[['extreme_gauche', 'gauche', 'centre_gauche', 
+                                                    'centre', 'centre_droite', 'droite', 
+                                                    'extreme_droite', 'divers']].sum(axis=1)
+        
+        # Calculate percentage of each type of vote
+        vote_types = ['extreme_gauche', 'gauche', 'centre_gauche', 'centre', 
+                      'centre_droite', 'droite', 'extreme_droite', 'divers']
+        for vote_type in vote_types:
+            commune_data[f'{vote_type}_percentage'] = (commune_data[vote_type] / commune_data['total_votes']) * 100
+        
+        # Determine the party with the most votes for each year
+        commune_data['Tête'] = commune_data[vote_types].idxmax(axis=1)
+        
         # Create a table with metrics as rows and years as columns
-        metrics = ['inscrits', 'taux_participation', 'blancs_et_nuls', 'extreme_gauche', 'gauche',
-                   'centre_gauche', 'centre', 'centre_droite', 'droite', 'extreme_droite', 'divers']
         table_data = {}
-        for metric in metrics:
+        for metric in vote_types + [f'{vote_type}_percentage' for vote_type in vote_types] + ['Tête']:
             metric_data = {}
-            for year, year_data in commune_data.groupby('annee'):
-                if metric in year_data:
+            for year in [2014, 2019]:
+                year_data = commune_data[commune_data['annee'] == year]
+                if not year_data.empty:
                     metric_data[year] = year_data[metric].values[0]
                 else:
                     metric_data[year] = 0
