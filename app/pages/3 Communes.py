@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 # Load data
 @st.cache
@@ -24,14 +26,19 @@ if not filtered_data.empty:
     # Display filtered data
     st.subheader('Election Data for Selected Commune(s)')
 
-    # Display data for each year
+    # Display heatmap for each year
     for year in filtered_data['annee'].unique():
-        year_data = filtered_data[filtered_data['annee'] == year].iloc[:, 2:]
-        
-        # Display data as a list
+        year_data = filtered_data[filtered_data['annee'] == year].copy()
+        year_data.set_index('libelle_commune', inplace=True)
+        year_data.drop(columns=['annee'], inplace=True)
+
+        # Plot heatmap
+        plt.figure(figsize=(10, 6))
         st.write(f'**Year: {year}**')
-        for index, row in year_data.iterrows():
-            st.write("- ".join([f"{col}: {row[col]}" for col in year_data.columns]))
+        sns.heatmap(year_data, annot=True, fmt="d", cmap="YlGnBu", linewidths=0.5)
+        plt.xlabel('Election Data')
+        plt.ylabel('Commune')
+        st.pyplot()
 
 else:
     st.write('No data available for the selected commune(s).')
