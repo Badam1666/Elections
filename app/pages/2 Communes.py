@@ -1,4 +1,3 @@
-import streamlit as st
 import pandas as pd
 
 # Load data
@@ -10,34 +9,35 @@ def load_data():
 
 data = load_data()
 
+# Function to calculate percentage difference
+def calculate_percentage_diff(year1, year2):
+    return ((year2 - year1) / year1) * 100
+
 # Streamlit app
 st.title('Election Data Explorer')
 
-# Multiselect widget for commune selection
-options = data['libelle_commune'].str.lower().unique()
-selected_communes = st.sidebar.multiselect('Select Commune(s):', options)
+# Search bar for commune selection
+search_query = st.text_input('Search for a commune (code or name):').lower()
 
-# Filter data based on selected communes
-filtered_data = data[data['libelle_commune'].str.lower().isin(selected_communes)]
+# Filter data based on search query
+filtered_data = data[data['libelle_commune'].str.lower().str.contains(search_query)]
 
 if not filtered_data.empty:
     # Display filtered data
     st.subheader('Election Data for Selected Commune(s)')
+    st.write(filtered_data)
 
-    # Filter data for the years 2014 and 2019
-    filtered_data = filtered_data[filtered_data['annee'].isin([2014, 2019])]
-    
-    # Group data by commune and year to get party percentages
-    grouped_data = filtered_data.groupby(['libelle_commune', 'annee']).sum().reset_index()
-    
-    # Create a DataFrame to store the results
-    df = pd.DataFrame(grouped_data)
-    df = df.pivot(index='libelle_commune', columns='annee', values=['extreme_gauche', 'gauche', 'centre_gauche', 'centre', 'centre_droite', 'droite', 'extreme_droite', 'divers']).fillna(0)
-    df.columns = ['_'.join(map(str, col)).strip() for col in df.columns.values]
-    df.reset_index(inplace=True)
-    
-    # Display the DataFrame
-    st.write(df)
+    # Calculate percentage difference for selected commune(s)
+    years = filtered_data['annee'].unique()
+    if len(years) == 2:
+        year1_data = filtered_data[filtered_data['annee'] == years[0]].iloc[:, 2:]
+        year2_data = filtered_data[filtered_data['annee'] == years[1]].iloc[:, 2:]
+        percentage_diff = calculate_percentage_diff(year1_data, year2_data)
+
+        st.subheader('Percentage Difference Between Years')
+        st.write(percentage_diff)
+    else:
+        st.write('Please select a commune with data for both 2014 and 2019.')
 
 else:
-    st.write('No data available for the selected commune(s).')
+    st.write('No data available for the selected commune.')
