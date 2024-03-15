@@ -37,7 +37,7 @@ def main():
     st.write("Notre objectif est de rendre les élections européennes accessibles à tous, afin que chacun puisse prendre des décisions éclairées et participer pleinement à la démocratie européenne.")
 
     # Nos prédictions
-    st.header("Nos Prédictions")
+    st.header("Nos prédictions")
     st.write("Nous sommes des étudiants à Le Wagon, une école de codage renommée, et nous avons entrepris une démarche de collecte de données auprès de Data gouv pour mener nos recherches. Notre objectif est de rendre les élections européennes accessibles à tous, afin que chacun puisse comprendre les enjeux et participer activement à la vie démocratique.")
     st.write("Pour prédire les élections de 2024, nous avons utilisé des algorithmes de machine learning, une approche moderne qui nous a permis d'analyser les tendances passées et de faire des projections pour l'avenir. Cependant, l'algorithme ne prend pas en compte le climat politique et social et a ses limites dans la prédiction de futures élections. Vous trouverez ci-dessous les prévisions de Nostradamus, notre plateforme de prédiction, comparées aux sondages Ipsos réalisés au début du mois de Mars.")
 
