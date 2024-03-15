@@ -1,32 +1,35 @@
-import streamlit as st
-st.set_page_config(page_title="Elections européennes", page_icon="🗳️", layout="centered", initial_sidebar_state="auto", menu_items=None)
+# Load data
+@st.cache
+def load_data():
+    url = "https://raw.githubusercontent.com/Badam1666/Elections/main/raw_data/Elections_Communes_Final.csv"
+    data = pd.read_csv(url)
+    return data
 
+data = load_data()
 
+# Streamlit app
+st.title('Election Data Explorer')
 
+# Multiselect widget for commune selection
+options = data['libelle_commune'].str.lower().unique()
+selected_communes = st.sidebar.multiselect('Select Commune(s):', options)
 
-import time
-from datetime import datetime, timezone, timedelta
+# Filter data based on selected communes
+filtered_data = data[data['libelle_commune'].str.lower().isin(selected_communes)]
 
-def count_down(target_datetime):
-    with st.empty():
-        while datetime.now(timezone.utc) < target_datetime:
-            remaining_time = target_datetime - datetime.now(timezone.utc)
-            days, seconds = divmod(remaining_time.total_seconds(), 86400)
-            hours, seconds = divmod(seconds, 3600)
-            minutes, seconds = divmod(seconds, 60)
-            
-            time_remaining = f"{int(days)} days, {int(hours)} hours, {int(minutes)} minutes, {int(seconds)} seconds"
-            
-            st.header(f"{time_remaining}")
-            time.sleep(1)
-        
-        st.header("Fin des inscriptions en ligne")
+if not filtered_data.empty:
+    # Display filtered data
+    st.subheader('Election Data for Selected Commune(s)')
 
-def main():
-    st.title("Countdown to May 1st, 2024")
-    target_datetime = datetime(2024, 5, 1, 0, 0, tzinfo=timezone.utc)
+    # Pivot the data to have years as columns and cities as rows
+    pivoted_data = filtered_data.pivot_table(index='libelle_commune', columns='annee', aggfunc='sum').fillna(0)
     
-    count_down(target_datetime)
+    # Convert the pivot table to a DataFrame
+    df = pivoted_data.reset_index()
+    df.columns.name = None  # Remove the name of the columns index
+    
+    # Display the DataFrame
+    st.write(df)
 
-if __name__ == '__main__':
-    main()
+else:
+    st.write('No data available for the selected commune(s).')
