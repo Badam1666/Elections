@@ -3,7 +3,6 @@ st.set_page_config(page_title="Elections européennes", page_icon="🗳️", lay
 
 
 
-import streamlit as st
 import pandas as pd
 
 # Load data
