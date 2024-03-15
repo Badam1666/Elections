@@ -43,6 +43,10 @@ if not filtered_data.empty:
     # Replace the year values with "2014" and "2019"
     grouped_data['Année'] = grouped_data['Année'].map({2014: '2014', 2019: '2019'})
     
+    # Replace the values in the "Tête" column to match column names
+    party_names = ['Extreme gauche', 'Gauche', 'Centre gauche', 'Centre', 'Centre droite', 'Droite', 'Extreme droite']
+    grouped_data['Tête'] = grouped_data['Tête'].apply(lambda x: party_names[party_names.index(x)] if x in party_names else x)
+    
     # Set commune as index
     grouped_data.set_index('Commune', inplace=True)
     
