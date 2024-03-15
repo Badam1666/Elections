@@ -1,5 +1,5 @@
 import streamlit as st
-from datetime import datetime
+from datetime import datetime, timedelta
 
 def main():
     st.title("Bienvenue sur le site de Nostradamus")
@@ -23,7 +23,8 @@ def main():
 
     countdown_placeholder = st.sidebar.empty()
 
-    if remaining_time.total_seconds() > 0:
+    while remaining_time.total_seconds() > 0:
+        remaining_time = target_date - datetime.now()
         days = remaining_time.days
         hours, remainder = divmod(remaining_time.seconds, 3600)
         minutes, seconds = divmod(remainder, 60)
@@ -32,6 +33,9 @@ def main():
                                       f"<h3>Temps restant jusqu'au 1er mai 2024 : {days} jours {hours} heures {minutes} minutes {seconds} secondes</h3>"
                                       "</div>"
                                       "</div>", unsafe_allow_html=True)
+        st.sidebar.markdown("<div style='background-color: #4169E1; padding: 8px; border-radius: 5px; margin-bottom: 10px;'>"
+                            "<a style='color: white; text-decoration: none;' href='https://www.service-public.fr/particuliers/vosdroits/demarches-et-outils/ISE'>Vérifiez votre statut électoral !</a>"
+                            "</div>", unsafe_allow_html=True)
     else:
         countdown_placeholder.markdown("<div style='background-color: #FFD700; padding: 8px; border-radius: 5px;'>"
                                       "<div style='color: black; font-size: small;'>"
