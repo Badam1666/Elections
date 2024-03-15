@@ -12,7 +12,7 @@ def main():
              "et de participer à la démocratie européenne.")
 
     # Box bleue avec lien pour vérifier le statut électoral
-    st.sidebar.markdown("<div style='background-color: #87CEEB; padding: 10px; border-radius: 5px;'>"
+    st.sidebar.markdown("<div style='background-color: #FFA500; padding: 8px; border-radius: 5px;'>"
                         "<a style='color: white; text-decoration: none;' href='https://www.service-public.fr/particuliers/vosdroits/demarches-et-outils/ISE'>Vérifiez votre statut électoral !</a>"
                         "</div>", unsafe_allow_html=True)
 
@@ -41,7 +41,7 @@ def main():
         minutes, seconds = divmod(remainder, 60)
         time_remaining = f"{days} jours, {hours} heures, {minutes} minutes, {seconds} secondes"
         
-        countdown_placeholder.markdown("<div style='background-color: #FFFF00; padding: 10px; border-radius: 5px;'>"
+        countdown_placeholder.markdown("<div style='background-color: #FFD700; padding: 8px; border-radius: 5px;'>"
                                        "<div style='color: black; font-size: small;'>"
                                        "<h3>Temps restant avant la fin des inscriptions en ligne :</h3>"
                                        f"<p>{time_remaining}</p>"
