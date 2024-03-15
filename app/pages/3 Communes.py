@@ -30,10 +30,15 @@ if not filtered_data.empty:
         # Filter data for the current commune
         commune_data = filtered_data[filtered_data['libelle_commune'].str.lower() == commune.lower()]
         
-        # Create a table with metrics as rows and years as columns
-        metrics = ['inscrits', 'taux_participation', 'blancs_et_nuls', 'extreme_gauche', 'gauche',
-                   'centre_gauche', 'centre', 'centre_droite', 'droite', 'extreme_droite', 'divers']
-        table_data = commune_data.pivot(index=None, columns='annee', values=metrics)
+        # Create tables for each metric and concatenate them into a single table
+        tables = []
+        for metric in ['inscrits', 'taux_participation', 'blancs_et_nuls', 'extreme_gauche', 'gauche',
+                       'centre_gauche', 'centre', 'centre_droite', 'droite', 'extreme_droite', 'divers']:
+            table = commune_data.pivot(index=None, columns='annee', values=metric)
+            table.index = [metric]  # Set index as metric name
+            tables.append(table)
+        
+        table_data = pd.concat(tables)
         st.write(table_data)
 
 else:
