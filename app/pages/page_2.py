@@ -11,11 +11,6 @@ import io
 
 st.set_page_config(page_title="Elections européennes", page_icon="🗳️", layout="centered", initial_sidebar_state="auto", menu_items=None)
 
-def show_page_2():
-    st.title("Orientations politiques")
-    st.write("Contenu de la page 2")
-    # Add more content or Streamlit components as needed for page 2
-
 
 # Replace the URL with the correct raw content URL for your pickle file on GitHub
 github_pickle_url = 'https://github.com/Badam1666/Elections/raw/main/raw_data/elections_geo_dpt.pkl'
