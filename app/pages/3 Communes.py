@@ -31,17 +31,13 @@ if not filtered_data.empty:
     # Display filtered data
     st.subheader('Election Data for Selected Commune(s)')
 
-    # Split the page into two columns
-    col1, col2 = st.columns(2)
-
-    # Display data for each year in a separate column
+    # Display data for each year
     for year in filtered_data['annee'].unique():
         year_data = filtered_data[filtered_data['annee'] == year].iloc[:, 2:]
         
         # Display data in a table format
-        with col1 if year == 2014 else col2:
-            st.write(f'**Year: {year}**')
-            st.write(year_data)
+        st.write(f'**Year: {year}**')
+        st.write(year_data)
 
     # Calculate percentage difference for selected commune(s)
     years = filtered_data['annee'].unique()
