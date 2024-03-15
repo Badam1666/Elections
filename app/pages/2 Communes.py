@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load data
-@st.cache
+
 def load_data():
     url = "https://raw.githubusercontent.com/Badam1666/Elections/main/raw_data/Elections_Communes_Final.csv"
     data = pd.read_csv(url)
