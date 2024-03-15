@@ -20,10 +20,18 @@ def main():
                         "<a style='color: white; text-decoration: none;' href='https://www.service-public.fr/particuliers/vosdroits/demarches-et-outils/ISE'>Vérifiez votre statut électoral !</a>"
                         "</div>", unsafe_allow_html=True)
     
-    # Box jaune avec countdown
+    # Countdown timer until 1st of May 2024
+    target_date = datetime(2024, 5, 1)
+    current_date = datetime.now()
+    remaining_time = target_date - current_date
+    days_remaining = remaining_time.days
+    hours_remaining = remaining_time.seconds // 3600
+    minutes_remaining = (remaining_time.seconds % 3600) // 60
+    seconds_remaining = remaining_time.seconds % 60
+
     st.sidebar.markdown("<div style='background-color: #FFD700; padding: 8px; border-radius: 5px;'>"
                         "<div style='color: black; font-size: small;'>"
-                        "<h3>Temps restant avant la fin des inscriptions en ligne :</h3>"
+                        f"<h3>Temps restant jusqu'au 1er mai 2024 : {days_remaining} jours {hours_remaining} heures {minutes_remaining} minutes {seconds_remaining} secondes</h3>"
                         "</div>"
                         "</div>", unsafe_allow_html=True)
 
