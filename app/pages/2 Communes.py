@@ -30,6 +30,9 @@ if not filtered_data.empty:
     # Identify the party that got the most votes for each commune
     grouped_data['Tête'] = grouped_data[['extreme_gauche', 'gauche', 'centre_gauche', 'centre', 'centre_droite', 'droite', 'extreme_droite']].idxmax(axis=1)
     
+    # Handle cases where there's a tie
+    grouped_data['Tête'] = grouped_data.apply(lambda row: 'Egalité' if row['Tête'].count() > 1 else row['Tête'], axis=1)
+    
     # Rearrange and rename columns
     grouped_data = grouped_data[[
         'libelle_commune', 'annee', 'votants', 'Tête',
@@ -44,8 +47,15 @@ if not filtered_data.empty:
     grouped_data['Année'] = grouped_data['Année'].map({2014: '2014', 2019: '2019'})
     
     # Replace the values in the "Tête" column to match column names
-    party_names = ['Extreme gauche', 'Gauche', 'Centre gauche', 'Centre', 'Centre droite', 'Droite', 'Extreme droite']
-    grouped_data['Tête'] = grouped_data['Tête'].apply(lambda x: party_names[party_names.index(x)] if x in party_names else x)
+    grouped_data['Tête'] = grouped_data['Tête'].replace({
+        'extreme_gauche': 'Extreme gauche',
+        'gauche': 'Gauche',
+        'centre_gauche': 'Centre gauche',
+        'centre': 'Centre',
+        'centre_droite': 'Centre droite',
+        'droite': 'Droite',
+        'extreme_droite': 'Extreme droite'
+    })
     
     # Set commune as index
     grouped_data.set_index('Commune', inplace=True)
