@@ -14,11 +14,17 @@ data = load_data()
 st.title('Election Data Explorer')
 
 # Multiselect widget for commune selection
-selected_communes = st.sidebar.multiselect('Search and Select Commune(s):', 
-                                            data['libelle_commune'].unique())
+search_query = st.sidebar.text_input('Search for a commune (code or name):').lower()
+
+# Filter options based on search query
+options = data['libelle_commune'].str.lower().unique()
+suggested_options = [option for option in options if search_query in option]
+
+# Multiselect widget for commune selection
+selected_communes = st.sidebar.multiselect('Select Commune(s):', suggested_options)
 
 # Filter data based on selected communes
-filtered_data = data[data['libelle_commune'].isin(selected_communes)]
+filtered_data = data[data['libelle_commune'].str.lower().isin(selected_communes)]
 
 if not filtered_data.empty:
     # Display filtered data
@@ -28,21 +34,10 @@ if not filtered_data.empty:
     for year in filtered_data['annee'].unique():
         year_data = filtered_data[filtered_data['annee'] == year].iloc[:, 2:]
         
-        # Display data in a table format
+        # Display data as a list
         st.write(f'**Year: {year}**')
-        st.write(year_data)
-
-    # Calculate percentage difference for selected commune(s)
-    years = filtered_data['annee'].unique()
-    if len(years) == 2:
-        year1_data = filtered_data[filtered_data['annee'] == years[0]].iloc[:, 2:]
-        year2_data = filtered_data[filtered_data['annee'] == years[1]].iloc[:, 2:]
-        percentage_diff = ((year2_data - year1_data) / year1_data) * 100
-
-        st.subheader('Percentage Difference Between Years')
-        st.write(percentage_diff)
-    else:
-        st.write('Please select a commune with data for both 2014 and 2019.')
+        for index, row in year_data.iterrows():
+            st.write("- ".join([f"{col}: {row[col]}" for col in year_data.columns]))
 
 else:
     st.write('No data available for the selected commune(s).')
