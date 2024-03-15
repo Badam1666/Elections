@@ -25,13 +25,18 @@ def main():
                         "</div>"
                         "</div>", unsafe_allow_html=True)
 
- 
-    
+    # Sur ce site
+    st.title("Sur ce site")
+    st.write("Bienvenue sur le site de Nostradamus, votre source d'informations essentielles sur les élections européennes. Sur notre plateforme, vous trouverez :")
+    st.write("1. **Orientations Politiques** : Découvrez comment nous classons les partis politiques en différentes orientations politiques, vous permettant de mieux comprendre les différentes idéologies et positions sur les questions européennes.")
+    st.write("2. **Carte des Résultats** : Explorez une carte interactive des résultats des élections européennes par département, vous permettant de visualiser les tendances politiques à travers la France depuis 2004.")
+    st.write("3. **Résultats par Commune** : Consultez les résultats des élections européennes de 2014 et 2019 dans votre commune, vous donnant un aperçu détaillé de la participation et des votes pour chaque parti politique.")
+    st.write("Notre objectif est de rendre les élections européennes accessibles à tous, afin que chacun puisse prendre des décisions éclairées et participer pleinement à la démocratie européenne.")
+
     # Nos prévisions
     st.header("Nos Prévisions")
-    st.write("Nous sommes des étudiants à Le Wagon, une école de codage renommée, et nous avons entrepris une démarche de collecte de données auprès de Data gouv pour mener nos recherches. Notre objectif est de rendre les élections européennes accessibles à tous, afin que chacun puisse comprendre les enjeux et participer activement à la vie démocratique.
-
-Pour prédire les élections de 2024, nous avons utilisé des algorithmes de machine learning, une approche moderne qui nous a permis d'analyser les tendances passées et de faire des projections pour l'avenir. Cependant, l'algorithme ne prend pas en compte le climat politique et social et a ses limites dans la prédiction de futures élections. Vous trouverez ci-dessous les prévisions de Nostradamus, notre plateforme de prédiction, comparées aux sondages Ipsos réalisés au début du mois de Mars.")
+    st.write("Nous sommes des étudiants à Le Wagon, une école de codage renommée, et nous avons entrepris une démarche de collecte de données auprès de Data gouv pour mener nos recherches. Notre objectif est de rendre les élections européennes accessibles à tous, afin que chacun puisse comprendre les enjeux et participer activement à la vie démocratique.")
+    st.write("Pour prédire les élections de 2024, nous avons utilisé des algorithmes de machine learning, une approche moderne qui nous a permis d'analyser les tendances passées et de faire des projections pour l'avenir. Cependant, l'algorithme ne prend pas en compte le climat politique et social et a ses limites dans la prédiction de futures élections. Vous trouverez ci-dessous les prévisions de Nostradamus, notre plateforme de prédiction, comparées aux sondages Ipsos réalisés au début du mois de Mars.")
 
     # Countdown jusqu'au 1er Mai à minuit
     target_datetime = datetime(datetime.now().year, 5, 1, 0, 0)
