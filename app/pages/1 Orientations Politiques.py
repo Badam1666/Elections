@@ -3,23 +3,31 @@ import streamlit as st
 
 # Create the original data dictionary
 data = {
-    'Date': pd.to_datetime(['2004-01-01', '2009-01-01', '2014-01-01', '2019-01-01', '2024-01-01']),
-    'Extrême gauche': ["LPC, LXG", "LEXG, LCOP", "LEXG, LFG", "La France Insoumise, L'Europe des gens", "La France Insoumise, Lutte ouvrière, NPA, PCF"],
-    'Gauche': ["LPS, LDG", "LSOC, LDVD", "LDVG, LUG", "Liste citoyenne",  "Parti socialiste et Place Publique"],
-    'Centre gauche': ["LEC, LVE", "LVEC", "LVEC", "Europe Ecologie, Envie d'Europe, Urgence Ecologie", "Europe Ecologie les Verts,Parti radical de Gauche "],
-    'Centre': ["-","LCMD", "LUC", "Renaissance", "Renaissance, Ecologie au centre"],
-    'Centre droite': ["LUDF", "-", "-", "Union Droite Centre, Les européens", "Alliance rurale"],
-    'Droite': ["LUMP, LCP, LDD", "LMAJ, LDVD", "LDVD, LUMP", "-", "Les republicains, Notre Europe"],
-    'Extrême droite': ["LFN, LXD", "LFN, LEXD", "LFN, LEXD", " Prenez le pouvoir, Debout ! La France, Ensemble pour le Frexit", "Debout ! La France, Reconquête, Rassemblement national, Union populaire republicaine"],
-    'Divers': ["LDV, LRG", " LAUT, LREG", "LDIV", "Parti animaliste", "Parti animaliste"]
+    'Année': ['2004-01-01', '2009-01-01', '2014-01-01', '2019-01-01', '2024-01-01'],
+    'extreme_gauche': ['Liste pour la gauche antilibérale', 'Front de gauche', 'Front de gauche', 'La France Insoumise', 'La France Insoumise'],
+    'gauche': ['Parti socialiste', 'Parti socialiste', 'Parti socialiste', 'Liste PS PRG MDM', 'Parti socialiste'],
+    'centre_gauche': ['Les Verts', 'Europe Ecologie', 'Europe Écologie', 'Europe Écologie Les Verts', 'Europe Écologie Les Verts'],
+    'centre': ['-', 'MoDem', 'Parti radical de gauche', 'Renaissance', 'Renaissance'],
+    'centre_droite': ['UDF', '-', '-', 'Union de la droite et du centre', 'Les Républicains'],
+    'droite': ['UMP', 'UMP', 'UMP', '-', 'Union de la droite et du centre'],
+    'extreme_droite': ['Front National', 'Front National', 'Front National', 'Rassemblement National', 'Rassemblement National'],
+    'divers': ['-', '-', 'Debout la République', 'Debout la France', 'Debout la France']
 }
+
 # Create a DataFrame from the data
 df = pd.DataFrame(data)
-# Reshape the DataFrame
-reshaped_df = pd.melt(df, id_vars=['Date'], var_name='Orientation Politique', value_name='Partis')
-# Pivot the reshaped DataFrame
-pivoted_df = reshaped_df.pivot(index='Date', columns='Orientation Politique', values='Partis')
 
-# Display the pivoted DataFrame using Streamlit
-st.write("Voici le DataFrame pivoté :")
-st.write(pivoted_df)
+# Display the data as a list per year
+st.title("Résultats des Élections Européennes")
+st.write("Voici les résultats des élections européennes par année :")
+for index, row in df.iterrows():
+    st.write(f"Année : {row['Année']}")
+    st.write("- Extrême gauche :", row['extreme_gauche'])
+    st.write("- Gauche :", row['gauche'])
+    st.write("- Centre gauche :", row['centre_gauche'])
+    st.write("- Centre :", row['centre'])
+    st.write("- Centre droite :", row['centre_droite'])
+    st.write("- Droite :", row['droite'])
+    st.write("- Extrême droite :", row['extreme_droite'])
+    st.write("- Divers :", row['divers'])
+    st.write("\n")
