@@ -24,38 +24,27 @@ if not filtered_data.empty:
     # Display filtered data
     st.subheader('Cherchez votre commune dans la barre à gauche pour afficher les résultats de 2014 et 2019 ')
 
-    # Pivot the data to have years as columns and cities as rows
-    pivoted_data = filtered_data.pivot_table(index='libelle_commune', columns='annee', aggfunc='sum').fillna(0)
+    # Group by commune and sum votes for each party
+    grouped_data = filtered_data.groupby('libelle_commune').sum().reset_index()
     
-    # Determine the party with the most votes for each year
-    pivoted_data['Tête 2014'] = pivoted_data[[('extreme_gauche', 2014), ('gauche', 2014), ('centre_gauche', 2014), ('centre', 2014), ('centre_droite', 2014), ('droite', 2014), ('extreme_droite', 2014), ('divers', 2014)]].idxmax(axis=1)
-    pivoted_data['Tête 2019'] = pivoted_data[[('extreme_gauche', 2019), ('gauche', 2019), ('centre_gauche', 2019), ('centre', 2019), ('centre_droite', 2019), ('droite', 2019), ('extreme_droite', 2019), ('divers', 2019)]].idxmax(axis=1)
+    # Identify the party that got the most votes for each commune
+    grouped_data['Tête'] = grouped_data[['extreme_gauche', 'gauche', 'centre_gauche', 'centre', 'centre_droite', 'droite', 'extreme_droite']].idxmax(axis=1)
     
     # Rearrange and rename columns
-    pivoted_data = pivoted_data[[
-        ('votants', 2014), ('Tête 2014'),
-        ('votants', 2019), ('Tête 2019'),
-        ('blancs_et_nuls', 2014), ('blancs_et_nuls', 2019),
-        ('extreme_gauche', 2014), ('extreme_gauche', 2019),
-        ('gauche', 2014), ('gauche', 2019),
-        ('centre_gauche', 2014), ('centre_gauche', 2019),
-        ('centre', 2014), ('centre', 2019),
-        ('centre_droite', 2014), ('centre_droite', 2019),
-        ('droite', 2014), ('droite', 2019),
-        ('extreme_droite', 2014), ('extreme_droite', 2019)
+    grouped_data = grouped_data[[
+        'libelle_commune', 'votants', 'Tête',
+        'blancs_et_nuls', 'extreme_gauche', 'gauche', 'centre_gauche',
+        'centre', 'centre_droite', 'droite', 'extreme_droite'
     ]]
-    pivoted_data.columns = ['Votants 2014', 'Tête 2014', 'Votants 2019', 'Tête 2019',
-                            'Blancs et nuls 2014', 'Blancs et nuls 2019',
-                            'Extreme gauche 2014', 'Extreme gauche 2019',
-                            'Gauche 2014', 'Gauche 2019',
-                            'Centre gauche 2014', 'Centre gauche 2019',
-                            'Centre 2014', 'Centre 2019',
-                            'Centre droite 2014', 'Centre droite 2019',
-                            'Droite 2014', 'Droite 2019',
-                            'Extreme droite 2014', 'Extreme droite 2019']
+    grouped_data.columns = ['Commune', 'Votants', 'Tête',
+                            'Blancs et nuls', 'Extreme gauche', 'Gauche', 'Centre gauche',
+                            'Centre', 'Centre droite', 'Droite', 'Extreme droite']
+    
+    # Set commune as index
+    grouped_data.set_index('Commune', inplace=True)
     
     # Display the DataFrame
-    st.write(pivoted_data)
+    st.write(grouped_data)
 
 else:
     st.write('No data available for the selected commune(s).')
