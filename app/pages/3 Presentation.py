@@ -1,4 +1,10 @@
-File "/home/adminuser/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 535, in _run_script
-    exec(code, module.__dict__)
-File "/mount/src/elections/app/pages/3 Presentation.py", line 2, in <module>
-    from streamlit_googleslide import st_googleslide
+import streamlit as st
+
+# Embed Google Slides presentation using an <iframe> tag
+st.markdown(
+    """
+    <iframe src="https://docs.google.com/presentation/d/1zKvvjRn7vbbdqqKRBzoQ6MjihuqhPbQgAGjBSxsGNc0/embed?start=false&loop=false&delayms=3000" 
+    width="100%" height="600" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+    """,
+    unsafe_allow_html=True
+)
