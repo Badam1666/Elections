@@ -23,7 +23,6 @@ filtered_data = data[data['libelle_commune'].str.lower().isin(selected_communes)
 
 if not filtered_data.empty:
     # Display filtered data
-    st.subheader('Cherchez votre commune dans la barre à gauche pour afficher les résultats de 2014 et 2019 ')
 
     # Group by commune and sum votes for each party
     grouped_data = filtered_data.groupby(['libelle_commune', 'annee']).sum().reset_index()
