@@ -15,7 +15,6 @@ def main():
     st.write("- Les résultats des élections européennes impactent directement le quotidien des citoyens de l'Union européenne. C'est grâce au Parlement européen que des décisions cruciales pour notre environnement ont été prises, telles que l'interdiction des plastiques à usage unique. De même, le règlement général sur la protection des données (RGPD), adopté par le Parlement européen, renforce nos droits fondamentaux à la vie privée et à la sécurité des données dans un monde de plus en plus numérisé.")
     st.write("Chaque vote aux élections européennes compte pour façonner un avenir plus durable, juste et sûr pour tous les citoyens européens !")
 
-
     # Box bleue avec lien pour vérifier le statut électoral
     st.sidebar.markdown("<div style='background-color: #4169E1; padding: 8px; border-radius: 5px; margin-bottom: 10px;'>"
                         "<a style='color: white; text-decoration: none;' href='https://www.service-public.fr/particuliers/vosdroits/demarches-et-outils/ISE'>Vérifiez votre statut électoral !</a>"
@@ -36,7 +35,7 @@ def main():
     st.write("Notre objectif est de rendre les élections européennes accessibles à tous, afin que chacun puisse prendre des décisions éclairées et participer pleinement à la démocratie européenne.")
 
     # Répartition
-    st.subheader("Répartion par orientation politique")
+    st.subheader("Répartition par orientation politique")
     st.write("Durant les 20 dernières annnées d'élections européennes, les noms des partis et nuances politiques ont changé considérablement. Pour pouvoir être cohérent dans nos analyses et dans nos prédictions, nous avons décidé de les classer par orientation politique. Nous avons utilisé le site internet de chacun de ces partis et les informations de l'Assemblée Nationale pour effectuer ce tri.")
     
     # Nos prédictions
@@ -108,6 +107,66 @@ def main():
         for index, value in enumerate(df_sorted_sondages['Sondages_2024']):
             ax2.text(value, index, f'{value}%', va='center')
         st.pyplot(fig2)
+
+    # Répartition par année et orientation politique
+    st.subheader("Répartition par année et orientation politique")
+    data = {
+        2004: {
+            'Extrême gauche': "LPC, LXG",
+            'Gauche': "LPS, LDG",
+            'Centre gauche': "LEC, LVE",
+            'Centre': "-",
+            'Centre droite': "LUDF",
+            'Droite': "LUMP, LCP, LDD",
+            'Extrême droite': "LFN, LXD",
+            'Divers': "LDV, LRG"
+        },
+        2009: {
+            'Extrême gauche': "LEXG, LCOP",
+            'Gauche': "LSOC, LDVD",
+            'Centre gauche': "LVEC",
+            'Centre': "LCMD",
+            'Centre droite': "-",
+            'Droite': "LMAJ, LDVD",
+            'Extrême droite': "LFN, LEXD",
+            'Divers': "LAUT, LREG"
+        },
+        2014: {
+            'Extrême gauche': "LEXG, LFG",
+            'Gauche': "LDVG, LUG",
+            'Centre gauche': "LVEC",
+            'Centre': "LUC",
+            'Centre droite': "-",
+            'Droite': "LDVD, LUMP",
+            'Extrême droite': "LFN, LEXD",
+            'Divers': "LDIV"
+        },
+        2019: {
+            'Extrême gauche': "La France Insoumise, L'Europe des gens",
+            'Gauche': "Liste citoyenne",
+            'Centre gauche': "Europe Ecologie, Envie d'Europe, Urgence Ecologie",
+            'Centre': "Renaissance",
+            'Centre droite': "Union Droite Centre, Les européens",
+            'Droite': "-",
+            'Extrême droite': "Prenez le pouvoir, Debout ! La France, Ensemble pour le Frexit",
+            'Divers': "Parti animaliste"
+        },
+        2024: {
+            'Extrême gauche': "La France Insoumise, Lutte ouvrière, NPA, PCF",
+            'Gauche': "Parti socialiste et Place Publique",
+            'Centre gauche': "Europe Ecologie les Verts,Parti radical de Gauche",
+            'Centre': "Renaissance, Ecologie au centre",
+            'Centre droite': "Alliance rurale",
+            'Droite': "Les republicains, Notre Europe",
+            'Extrême droite': "Debout ! La France, Reconquête, Rassemblement national, Union populaire republicaine",
+            'Divers': "Parti animaliste"
+        }
+    }
+
+    for year, parties in data.items():
+        st.write(f"Année {year} :")
+        for party, votes in parties.items():
+            st.write(f"- {party} : {votes}")
 
 if __name__ == '__main__':
     main()
