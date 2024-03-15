@@ -1,8 +1,4 @@
 import streamlit as st
-from pages.home import show_home_page
-from pages.page_2 import show_page_2
-from pages.page_3 import show_page_3
-from pages.page_4 import show_page_4
 
 def main():
     # Hide the current page (app.py) from the sidebar
