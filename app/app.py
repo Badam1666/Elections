@@ -55,15 +55,11 @@ hours, remainder = divmod(remaining_time.seconds, 3600)
 minutes, seconds = divmod(remainder, 60)
 time_remaining = f"{days} jours, {hours} heures, {minutes} minutes, {seconds} secondes"
 
-st.markdown("<div style='background-color: #FFFF00; padding: 10px; border-radius: 5px;'>"
-            "<div style='color: black;'>"
-            "<h2>Compte à rebours jusqu'au 1er Mai à minuit :</h2>"
-            f"<p>Le 1er Mai est la date limite pour s'inscrire en ligne pour les élections. "
-            f"Assurez-vous de vérifier votre statut électoral et de vous inscrire avant cette date "
-            f"pour participer au processus démocratique.</p>"
-            f"<p>Temps restant : {time_remaining}</p>"
-            "</div>"
-            "</div>", unsafe_allow_html=True)
+st.sidebar.markdown("<div style='background-color: #FFFF00; padding: 10px; border-radius: 5px;'>"
+                    "<div style='color: black;'>"
+                    "<h3>Temps restant avant la fin des inscriptions en ligne</h3>"
+                    "</div>"
+                    "</div>", unsafe_allow_html=True)
 
 
 if __name__ == '__main__':
