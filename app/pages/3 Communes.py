@@ -26,19 +26,15 @@ if not filtered_data.empty:
     # Display filtered data
     st.subheader('Election Data for Selected Commune(s)')
 
-    # Display heatmap for each year
-    for year in filtered_data['annee'].unique():
-        year_data = filtered_data[filtered_data['annee'] == year].copy()
-        year_data.set_index('libelle_commune', inplace=True)
-        year_data.drop(columns=['annee'], inplace=True)
-
-        # Plot heatmap
-        fig, ax = plt.subplots(figsize=(10, 6))
-        st.write(f'**Year: {year}**')
-        sns.heatmap(year_data, annot=True, fmt=".1f", cmap="YlGnBu", linewidths=0.5, ax=ax)
-        plt.xlabel('Election Data')
-        plt.ylabel('Commune')
-        st.pyplot(fig)
+    # Pivot the data to have years as columns and cities as rows
+    pivoted_data = filtered_data.pivot_table(index='libelle_commune', columns='annee', aggfunc='sum').fillna(0)
+    
+    # Plot heatmap
+    fig, ax = plt.subplots(figsize=(10, 6))
+    sns.heatmap(pivoted_data, annot=True, fmt=".1f", cmap="YlGnBu", linewidths=0.5, ax=ax)
+    plt.xlabel('Year')
+    plt.ylabel('Commune')
+    st.pyplot(fig)
 
 else:
     st.write('No data available for the selected commune(s).')
