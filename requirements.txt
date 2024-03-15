@@ -6,3 +6,4 @@ folium
 geemap
 streamlit_folium
 Pillow
+st_pages
