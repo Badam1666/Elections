@@ -31,8 +31,8 @@ colors = {
 }
 
 # Sort dataframe by the percentages
-df_sorted_sondages = df.sort_values(by='Sondages_2024', ascending=False)
-df_sorted = df.sort_values(by='predictions_2024', ascending=False)
+df_sorted_sondages = df.sort_values(by='Sondages_2024', ascending=True)
+df_sorted = df.sort_values(by='predictions_2024', ascending=True)
 
 # Create a Streamlit app
 st.title('Election Predictions')
@@ -41,31 +41,33 @@ st.title('Election Predictions')
 col1, col2 = st.columns(2)
 
 # Plot for Sondages_2024
-with col2:
-    fig1, ax1 = plt.subplots(figsize=(8, 8))
-    ax1.barh(df_sorted_sondages['Orientation politique'], df_sorted_sondages['Sondages_2024'], color=[colors.get(x, '#FFFFFF') for x in df_sorted_sondages['Orientation politique']])
-    ax1.set_title('Sondages Ipsos - 1-6 mars 2024 - 5169 répondants')
-    ax1.set_xlabel('Pourcentage de votes')
-    ax1.set_ylabel('Orientation politique')
-    ax1.spines['top'].set_visible(False)
-    ax1.spines['right'].set_visible(False)
-    ax1.spines['bottom'].set_visible(False)
-    ax1.spines['left'].set_visible(False)
+with col1:
+    plt.figure(figsize=(8, 8))
+    plt.barh(df_sorted_sondages['Orientation politique'], df_sorted_sondages['Sondages_2024'], color=[colors.get(x, '#FFFFFF') for x in df_sorted_sondages['Orientation politique']])
+    plt.title('Sondages Ipsos - 1-6 mars 2024 - 5169 répondants')
+    plt.xlabel('Pourcentage de votes')
+    plt.ylabel('Orientation politique')
+    plt.gca().spines['top'].set_visible(False)
+    plt.gca().spines['right'].set_visible(False)
+    plt.gca().spines['bottom'].set_visible(False)
+    plt.gca().spines['left'].set_visible(False)
     for index, value in enumerate(df_sorted_sondages['Sondages_2024']):
-        ax1.text(value, index, f'{value}%', va='center')
+        plt.text(value, index, f'{value}%', va='center')
+    fig1 = plt.gcf()
     st.pyplot(fig1)
 
 # Plot for predictions_2024
-with col1:
-    fig2, ax2 = plt.subplots(figsize=(8, 8))
-    ax2.barh(df_sorted['Orientation politique'], df_sorted['predictions_2024'], color=[colors.get(x, '#FFFFFF') for x in df_sorted['Orientation politique']])
-    ax2.set_title('Prédictions Nostradamus')
-    ax2.set_xlabel('Pourcentage de votes')
-    ax2.set_ylabel('Orientation politique')
-    ax2.spines['top'].set_visible(False)
-    ax2.spines['right'].set_visible(False)
-    ax2.spines['bottom'].set_visible(False)
-    ax2.spines['left'].set_visible(False)
+with col2:
+    plt.figure(figsize=(8, 8))
+    plt.barh(df_sorted['Orientation politique'], df_sorted['predictions_2024'], color=[colors.get(x, '#FFFFFF') for x in df_sorted['Orientation politique']])
+    plt.title('Prédictions Nostradamus')
+    plt.xlabel('Pourcentage de votes')
+    plt.ylabel('Orientation politique')
+    plt.gca().spines['top'].set_visible(False)
+    plt.gca().spines['right'].set_visible(False)
+    plt.gca().spines['bottom'].set_visible(False)
+    plt.gca().spines['left'].set_visible(False)
     for index, value in enumerate(df_sorted['predictions_2024']):
-        ax2.text(value, index, f'{value}%', va='center')
+        plt.text(value, index, f'{value}%', va='center')
+    fig2 = plt.gcf()
     st.pyplot(fig2)
