@@ -28,10 +28,8 @@ if not filtered_data.empty:
     grouped_data = filtered_data.groupby(['libelle_commune', 'annee']).sum().reset_index()
     
     # Identify the party that got the most votes for each commune
-    grouped_data['Tête'] = grouped_data[['extreme_gauche', 'gauche', 'centre_gauche', 'centre', 'centre_droite', 'droite', 'extreme_droite']].idxmax(axis=1)
-    
-    # Handle cases where there's a tie
-    grouped_data['Tête'] = grouped_data.apply(lambda row: 'Egalité' if row['Tête'].count() > 1 else row['Tête'], axis=1)
+    max_votes_party = grouped_data[['extreme_gauche', 'gauche', 'centre_gauche', 'centre', 'centre_droite', 'droite', 'extreme_droite']].idxmax(axis=1)
+    grouped_data['Tête'] = max_votes_party.apply(lambda party: party if max_votes_party.value_counts().max() == 1 else 'Egalité')
     
     # Rearrange and rename columns
     grouped_data = grouped_data[[
