@@ -26,13 +26,9 @@ def main():
     st.subheader("Les élections européennes à votre portée")
 
     # Explication des élections européennes
-    st.markdown("<div style='background-color: #FFFF00; padding: 10px; border-radius: 5px;'>"
-                "<div style='color: black;'>"
-                "Les élections européennes sont un moment crucial où vous pouvez exercer votre droit de vote "
-                "et influencer l'avenir de l'Union européenne. C'est votre opportunité de faire entendre votre voix "
-                "et de participer à la démocratie européenne."
-                "</div>"
-                "</div>", unsafe_allow_html=True)
+    st.write("Les élections européennes sont un moment crucial où vous pouvez exercer votre droit de vote "
+             "et influencer l'avenir de l'Union européenne. C'est votre opportunité de faire entendre votre voix "
+             "et de participer à la démocratie européenne.")
 
     # Box bleue avec lien pour vérifier le statut électoral
     st.sidebar.markdown("<div style='background-color: #87CEEB; padding: 10px; border-radius: 5px;'>"
