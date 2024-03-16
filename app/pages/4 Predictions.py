@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
+st.set_page_config(page_title="Elections européennes", page_icon="🗳️", layout="centered", initial_sidebar_state="auto", menu_items=None)
+
 # Nos prédictions
 st.subheader("Nos prédictions")
 st.write("Pour prédire les résultats des élections de 2024, nous avons utilisé des algorithmes de machine learning, une technologie d'intelligence artificielle qui nous a permis d'analyser les tendances passées et de faire des projections pour 2024. L'algorithme présente quelques limites dans le sens où il ne prend pas en compte le climat politique et social actuel. Vous trouverez ci-dessous nos prévisions que nous avons comparées au sondage Ipsos réalisé au début du mois de mars 2024.")
