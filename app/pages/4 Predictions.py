@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 
 # Nos prédictions
 st.subheader("Nos prédictions")
-st.write("Nous sommes des étudiants en Data Analyse à Le Wagon, nous avons entrepris une démarche de collecte de données auprès de Data gouv pour mener nos recherches. Notre objectif est de rendre les élections européennes accessibles à tous, afin que chacun puisse comprendre les enjeux et participer activement à la vie démocratique.")
 st.write("Pour prédire les résultats des élections de 2024, nous avons utilisé des algorithmes de machine learning, une technologie d'intelligence artificielle qui nous a permis d'analyser les tendances passées et de faire des projections pour 2024. L'algorithme présente quelques limites dans le sens où il ne prend pas en compte le climat politique et social actuel. Vous trouverez ci-dessous nos prévisions que nous avons comparées au sondage Ipsos réalisé au début du mois de mars 2024.")
 
 # Load data
