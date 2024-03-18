@@ -28,24 +28,24 @@ if not filtered_data.empty:
     
     # Identify the party that got the most votes for each commune
     max_votes_party = grouped_data[['extreme_gauche', 'gauche', 'centre_gauche', 'centre', 'centre_droite', 'droite', 'extreme_droite']].idxmax(axis=1)
-    grouped_data['Tête'] = max_votes_party
+    grouped_data['En tête'] = max_votes_party
 
     
     # Rearrange and rename columns
     grouped_data = grouped_data[[
-        'libelle_commune', 'annee', 'votants', 'Tête',
+        'libelle_commune', 'annee', 'votants', 'En tête',
         'blancs_et_nuls', 'extreme_gauche', 'gauche', 'centre_gauche',
         'centre', 'centre_droite', 'droite', 'extreme_droite'
     ]]
-    grouped_data.columns = ['Commune', 'Année', 'Votants', 'Tête',
+    grouped_data.columns = ['Commune', 'Année', 'Votants', 'En tête',
                             'Blancs et nuls', 'Extreme gauche', 'Gauche', 'Centre gauche',
                             'Centre', 'Centre droite', 'Droite', 'Extreme droite']
     
     # Replace the year values with "2014" and "2019"
     grouped_data['Année'] = grouped_data['Année'].map({2014: '2014', 2019: '2019'})
     
-    # Replace the values in the "Tête" column to match column names
-    grouped_data['Tête'] = grouped_data['Tête'].replace({
+    # Replace the values in the "En tête" column to match column names
+    grouped_data['En tête'] = grouped_data['En tête'].replace({
         'extreme_gauche': 'Extreme gauche',
         'gauche': 'Gauche',
         'centre_gauche': 'Centre gauche',
