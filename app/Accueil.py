@@ -37,7 +37,7 @@ def main():
     st.subheader("Sur ce site")
     st.write("Bienvenue sur le site de Nostradamus, votre source d'informations essentielles sur les élections européennes. Sur notre plateforme, vous trouverez :")
     st.write("1. [**Classification**](https://elections-europe.streamlit.app/Classification) : Découvrez la répartition des partis politiques par orientation politique pour simplifier la compréhension et les prédictions des élections européennes.")
-    st.write("2. [**Carte des Résultat**](https://elections-europe.streamlit.app/Carte) : Explorez une carte interactive des résultats des élections européennes par département afin de visualiser les tendances politiques à travers la France depuis 2004.")
+    st.write("2. [**Carte des Résultats**](https://elections-europe.streamlit.app/Carte) : Explorez une carte interactive des résultats des élections européennes par département afin de visualiser les tendances politiques à travers la France depuis 2004.")
     st.write("3. [**Résultats par Commune**](https://elections-europe.streamlit.app/Communes) : Consultez les résultats des élections européennes de 2014 et 2019 dans votre commune, vous donnant un aperçu détaillé de la participation et des votes pour chaque orientation politique.")
     st.write("4. [**Prédictions**](https://elections-europe.streamlit.app/Predictions) : Accédez à nos prévisions pour les élections européennes de 2024.")
     st.write("5. [**Présentation**](https://elections-europe.streamlit.app/Presentation) : Découvrez notre analyse détaillée sur les élections européennes, incluant des clés de compréhension sur les comportements de vote")
