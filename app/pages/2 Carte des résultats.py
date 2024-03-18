@@ -82,9 +82,6 @@ choropleth = folium.GeoJson(
                                            localize=True)
 ).add_to(m)
 
-# Add layer control
-folium.LayerControl().add_to(m)
-
 # Create legend
 legend_img = Image.new('RGB', (100, 155), 'white')
 draw = ImageDraw.Draw(legend_img)
@@ -100,13 +97,8 @@ for i, (color, label) in enumerate(zip(colors, labels)):
     draw.rectangle([0, y, 10, y + 10], fill=color)
     draw.text((15, y), label, font=font, fill='black')
 
-# Display the map and legend
-col1, col2 = st.columns([4, 1])
-with col1:
-    folium_static(m, width=800, height=600)
+# Display the legend
+st.image(legend_img, caption="Legend", use_column_width=True)
 
-with col2:
-    st.image(legend_img, caption="Legend", use_column_width=True)
-
-
-             
+# Display the map
+folium_static(m, width=800, height=600)
