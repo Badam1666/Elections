@@ -9,7 +9,7 @@ import geemap.foliumap as geemap
 from PIL import Image, ImageDraw, ImageFont
 import io
 
-st.set_page_config(page_title="Elections européennes", page_icon="🗳️", layout="centered", initial_sidebar_state="auto", menu_items=None)
+st.set_page_config(page_title="Elections européennes par département", page_icon="🗳️", layout="centered", initial_sidebar_state="auto", menu_items=None)
 
 
 # Replace the URL with the correct raw content URL for your pickle file on GitHub
@@ -23,7 +23,7 @@ gdf = gpd.GeoDataFrame(df, geometry='geometry')
 
 ###########################################################################################################################
 # Filter the data by the selected year
-selected_year = st.sidebar.selectbox("Select Year", ["2004", "2009", "2014", "2019"])
+selected_year = st.sidebar.selectbox("Choisissez l'année", ["2004", "2009", "2014", "2019"])
 gdf = gdf[gdf['annee'] == int(selected_year)]
 
 # Set page title
@@ -55,7 +55,7 @@ for party in parties:
     gdf[f'{party} (%)'] = gdf[f'{party} (%)'].round(2)
 
 # Define tooltip fields for each department
-tooltip_fields = ['Département', 'Tête']
+tooltip_fields = ['Département', 'En tête']
 tooltip_fields.extend([f'{party} (%)' for party in parties])
 
 # Add GeoDataFrame as choropleth layer to the map
