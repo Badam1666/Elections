@@ -47,7 +47,7 @@ gdf = gdf.rename(columns={'nom_departement': 'Département',
 parties = ['Extreme droite', 'Droite', 'Centre droite', 'Centre', 'Centre gauche', 'Gauche', 'Extreme gauche', 'Divers']
 
 # Sort parties within each department based on the votes, ensuring the most voted party comes first
-gdf['Tête'] = gdf[parties].idxmax(axis=1)
+gdf['En tête'] = gdf[parties].idxmax(axis=1)
 
 # Convert party votes to percentage
 for party in parties:
@@ -63,14 +63,14 @@ choropleth = folium.GeoJson(
     gdf,
     name='Choropleth',
     style_function=lambda feature: {
-        'fillColor': '#EEEEEE' if feature['properties']['Tête'] == 'Divers' else
-                     '#242F7F' if feature['properties']['Tête'] == 'Extreme droite' else
-                     '#0066CC' if feature['properties']['Tête'] == 'Droite' else
-                     '#82A2C6' if feature['properties']['Tête'] == 'Centre droite' else
-                     '#FFD700' if feature['properties']['Tête'] == 'Centre' else
-                     '#F3D79A' if feature['properties']['Tête'] == 'Centre gauche' else
-                     '#FF8080' if feature['properties']['Tête'] == 'Gauche' else
-                     '#BB0000' if feature['properties']['Tête'] == 'Extreme gauche' else 'white',
+        'fillColor': '#EEEEEE' if feature['properties']['En tête'] == 'Divers' else
+                     '#242F7F' if feature['properties']['En tête'] == 'Extreme droite' else
+                     '#0066CC' if feature['properties']['En tête'] == 'Droite' else
+                     '#82A2C6' if feature['properties']['En tête'] == 'Centre droite' else
+                     '#FFD700' if feature['properties']['En tête'] == 'Centre' else
+                     '#F3D79A' if feature['properties']['En tête'] == 'Centre gauche' else
+                     '#FF8080' if feature['properties']['En tête'] == 'Gauche' else
+                     '#BB0000' if feature['properties']['En tête'] == 'Extreme gauche' else 'white',
         'color': 'black',
         'weight': 1,
         'fillOpacity': 0.7
