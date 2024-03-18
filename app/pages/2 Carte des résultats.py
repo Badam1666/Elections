@@ -101,7 +101,7 @@ for i, (color, label) in enumerate(zip(colors, labels)):
     draw.text((15, y), label, font=font, fill='black')
 
 # Display the map and legend
-col1, col2 = st.columns([8,1])
+col1, col2 = st.columns([6,1])
 with col1:
     folium_static(m, width=800, height=600)
 
