@@ -11,11 +11,11 @@ def load_data():
 data = load_data()
 
 # Streamlit app
-st.title('Résultat d\'élections dans votre commune')
+st.title('Résultats des élections européennes par commune')
 
 # Multiselect widget for commune selection
 options = data['libelle_commune'].str.lower().unique()
-selected_communes = st.sidebar.multiselect('Select Commune(s):', options)
+selected_communes = st.sidebar.multiselect('Choisissez une commune :', options)
 
 # Filter data based on selected communes
 filtered_data = data[data['libelle_commune'].str.lower().isin(selected_communes)]
