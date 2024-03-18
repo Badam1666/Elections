@@ -6,7 +6,7 @@ st.set_page_config(page_title="Elections européennes", page_icon="🗳️", lay
 
 # Nos prédictions
 st.subheader("Nos prédictions")
-st.write("Pour prédire les résultats des élections de 2024, nous avons utilisé des algorithmes de machine learning, une technologie d'intelligence artificielle qui nous a permis d'analyser les tendances passées et de faire des projections pour 2024. L'algorithme présente quelques limites dans le sens où il ne prend pas en compte le climat politique et social actuel. Vous trouverez ci-dessous nos prévisions que nous avons comparées au sondage Ipsos réalisé au début du mois de mars 2024.")
+st.write("Notre groupe des Nostradamus a utilisé des algorithmes de machine learning, une technologie d'intelligence artificielle qui nous a permis de  faire des prédictions pour les élections de juin 2024 à partir des résultats des 15 dernières années. L'algorithme présente quelques limites dans le sens où il ne prend pas en compte le climat politique et social actuel. Vous trouverez ci-dessous nos prévisions que nous avons comparées au sondage Ipsos réalisé au début du mois de mars 2024.")
 
 # Load data
 url = "https://github.com/AliciaD31/elections-nostradamus/blob/main/predictions2024_Python.csv?raw=true"
