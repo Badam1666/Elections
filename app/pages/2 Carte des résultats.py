@@ -1,16 +1,12 @@
 import streamlit as st
 import pandas as pd
 import geopandas as gpd
-import matplotlib.pyplot as plt
 import folium
 from folium.plugins import MarkerCluster
 from streamlit_folium import folium_static
-import geemap.foliumap as geemap
 from PIL import Image, ImageDraw, ImageFont
-import io
 
 st.set_page_config(page_title="Elections européennes par département", page_icon="🗳️", layout="centered", initial_sidebar_state="auto", menu_items=None)
-
 
 # Replace the URL with the correct raw content URL for your pickle file on GitHub
 github_pickle_url = 'https://github.com/Badam1666/Elections/raw/main/raw_data/elections_geo_dpt.pkl'
@@ -97,8 +93,6 @@ for i, (color, label) in enumerate(zip(colors, labels)):
     draw.rectangle([0, y, 10, y + 10], fill=color)
     draw.text((15, y), label, font=font, fill='black')
 
-# Display the legend
+# Display the map and legend
 st.image(legend_img, caption="Legend", use_column_width=True)
-
-# Display the map
 folium_static(m, width=800, height=600)
