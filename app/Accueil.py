@@ -12,14 +12,14 @@ def main():
     st.subheader("Les élections européennes à votre portée")
 
     # Explication des élections européennes
-    st.write("Nous sommes des étudiants en Data Analyse à Le Wagon, nous avons entrepris une démarche de collecte de données auprès de Data gouv pour mener nos recherches. Notre objectif est de rendre les élections européennes accessibles à tous, afin que chacun puisse comprendre les enjeux et participer activement à la vie démocratique.")
-
-    st.write("Les prochaines élections européennes auront lieu du 6 au 9 juin 2024. Vous ne savez pas trop comment ces élections fonctionnent et quels sont leurs enjeux ? Pas d'inquiétude, la team Nostradamus vous aide à y voir plus clair !")
+    st.write("Nous sommes des étudiants en Data Analyse à Le Wagon. Pendant 2 semaines, nous avons analysé des données de data.gouv.fr sur les élections européennes. Notre objectif ? Sensibiliser sur l'importance des élections européennes, présenter les tendances de vote en France et proposer des prédictions pour les élections de juin 2024.")
+    
+    st.write("En effet, les prochaines élections européennes auront lieu du 6 au 9 juin 2024. Vous ne savez pas trop comment ces élections fonctionnent et quels sont leurs enjeux ? Pas d'inquiétude, la team Nostradamus vous aide à y voir plus clair !")
     st.write("- Tous les cinq ans, les citoyens des États membres de l'Union européenne votent pour élire leurs représentants au Parlement européen.")
     st.write("- Chaque État membre a un nombre de sièges proportionnel à sa population.")
     st.write("- Les résultats des élections européennes impactent directement le quotidien des citoyens de l'Union européenne. C'est grâce au Parlement européen que des décisions cruciales pour notre environnement ont été prises, telles que l'interdiction des plastiques à usage unique. De même, le règlement général sur la protection des données (RGPD), adopté par le Parlement européen, renforce nos droits fondamentaux à la vie privée et à la sécurité des données dans un monde de plus en plus numérisé.")
-    st.write("Vous trouverez également un lien dans la barre latérale pour vérifier votre inscription sur la liste électorale pour les élections européennes de juin, ainsi qu'un compte à rebours pour la clôture des inscriptions en ligne.")
     st.write("Chaque vote aux élections européennes compte pour façonner un avenir plus durable, juste et sûr pour tous les citoyens européens !")
+    st.write("Vérifiez votre inscription sur les listes électorales dans la barre latérale.")
 
     # Box bleue avec lien pour vérifier le statut électoral
     st.sidebar.markdown("<div style='background-color: #4169E1; padding: 8px; border-radius: 5px; margin-bottom: 10px;'>"
