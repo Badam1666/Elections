@@ -12,7 +12,7 @@ def main():
     st.subheader("Les élections européennes à votre portée")
 
     # Explication des élections européennes
-    st.write("Nous sommes des étudiants en Data Analyse à Le Wagon. Pendant 2 semaines, nous avons analysé des données de [data.gouv.fr](data.gouv.fr) sur les élections européennes. Notre objectif ? Sensibiliser sur l'importance des élections européennes, présenter les tendances de vote en France et proposer des prédictions pour les élections de juin 2024.")
+    st.write("Nous sommes des étudiants en Data Analyse à Le Wagon. Pendant 2 semaines, nous avons analysé des données de [data.gouv.fr](https://data.gouv.fr) sur les élections européennes. Notre objectif ? Sensibiliser sur l'importance des élections européennes, présenter les tendances de vote en France et proposer des prédictions pour les élections de juin 2024.")
     
     st.write("En effet, les prochaines élections européennes auront lieu du 6 au 9 juin 2024. Vous ne savez pas trop comment ces élections fonctionnent et quels sont leurs enjeux ? Pas d'inquiétude, la team Nostradamus vous aide à y voir plus clair !")
     st.write("- Tous les cinq ans, les citoyens des États membres de l'Union européenne votent pour élire leurs représentants au Parlement européen.")
