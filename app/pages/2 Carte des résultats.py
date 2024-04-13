@@ -32,6 +32,40 @@ st.title("Résultats des élections européennes en France")
 # Create a Map centered around France
 m = folium.Map(location=[46.603354, 1.888334], zoom_start=6)
 
+# Box bleue avec lien pour vérifier le statut électoral
+st.sidebar.markdown("<div style='background-color: #4169E1; padding: 8px; border-radius: 5px; margin-bottom: 10px;'>"
+                        "<a style='color: white; text-decoration: none;' href='https://www.service-public.fr/particuliers/vosdroits/demarches-et-outils/ISE'>Vérifiez votre statut électoral !</a>"
+                        "</div>", unsafe_allow_html=True)
+    
+# Box jaune avec countdown
+st.sidebar.markdown("<div style='background-color: #FFD700; padding: 8px; border-radius: 5px;'>"
+                        "<div style='color: black; font-size: small;'>"
+                        "<h3>Temps restant avant la fin des inscriptions en ligne :</h3>"
+                        "</div>"
+                        "</div>", unsafe_allow_html=True)
+
+
+# Countdown jusqu'au 1er Mai à minuit
+target_datetime = datetime(datetime.now().year, 5, 1, 0, 0)
+
+countdown_placeholder = st.sidebar.empty()
+
+while datetime.now() < target_datetime:
+    remaining_time = target_datetime - datetime.now()
+    days = remaining_time.days
+     hours, remainder = divmod(remaining_time.seconds, 3600)
+    minutes, seconds = divmod(remainder, 60)
+        time_remaining = f"{days} jours, {hours} heures, {minutes} minutes, {seconds} secondes"
+        
+    countdown_placeholder.markdown("<div style='background-color: #FFD700; padding: 8px; border-radius: 5px;'>"
+                                    "<div style='color: black; font-size: small;'>"
+                                    f"<p>{time_remaining}</p>"
+                                    "</div>"
+                                    "</div>", unsafe_allow_html=True)
+        
+    time.sleep(1)
+
+
 # Rename columns
 gdf = gdf.rename(columns={'nom_departement': 'Département', 
                           'extreme_droite': 'Extreme droite',
